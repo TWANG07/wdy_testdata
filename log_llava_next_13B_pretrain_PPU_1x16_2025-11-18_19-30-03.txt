@@ -1,0 +1,524 @@
+[2025-11-18 19:30:07,024] [INFO] [real_accelerator.py:203:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+/usr/local/lib/python3.12/site-packages/deepspeed/runtime/zero/linear.py:47: FutureWarning: `torch.cuda.amp.custom_fwd(args...)` is deprecated. Please use `torch.amp.custom_fwd(args..., device_type='cuda')` instead.
+  @autocast_custom_fwd
+/usr/local/lib/python3.12/site-packages/deepspeed/runtime/zero/linear.py:66: FutureWarning: `torch.cuda.amp.custom_bwd(args...)` is deprecated. Please use `torch.amp.custom_bwd(args..., device_type='cuda')` instead.
+  @autocast_custom_bwd
+[93m [WARNING] [0m async_io requires the dev libaio .so object and headers but these were not found.
+[93m [WARNING] [0m async_io: please install the libaio-dev package with apt
+[93m [WARNING] [0m If libaio is already installed (perhaps from source), try setting the CFLAGS and LDFLAGS environment variables to where it can be found.
+[93m [WARNING] [0m Please specify the CUTLASS repo directory as environment variable $CUTLASS_PATH
+[93m [WARNING] [0m sparse_attn requires a torch version >= 1.5 and < 2.0 but detected 2.6
+[93m [WARNING] [0m using untested triton version (3.1.0), only 1.0.0 is known to be compatible
+[2025-11-18 19:30:16,983] [WARNING] [runner.py:202:fetch_hostfile] Unable to find hostfile, will proceed with training with local resources only.
+Detected CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15: setting --include=localhost:0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15
+[2025-11-18 19:30:16,983] [INFO] [runner.py:568:main] cmd = /usr/local/bin/python3 -u -m deepspeed.launcher.launch --world_info=eyJsb2NhbGhvc3QiOiBbMCwgMSwgMiwgMywgNCwgNSwgNiwgNywgOCwgOSwgMTAsIDExLCAxMiwgMTMsIDE0LCAxNV19 --master_addr=127.0.0.1 --master_port=29500 --enable_each_rank_log=None llava/train/train_mem.py --deepspeed ./scripts/zero2.json --model_name_or_path ./checkpoints/llava-v1.6-vicuna-13b --version plain --data_path /home/llava/LLaVA/data/LLaVA-Pretrain/blip_laion_cc_sbu_558k.json --image_folder /home/llava/LLaVA/data/LLaVA-Pretrain/images --vision_tower ./checkpoints/clip-vit-large-patch14-336 --mm_projector_type mlp2x_gelu --tune_mm_mlp_adapter True --mm_vision_select_layer -2 --mm_use_im_start_end False --mm_use_im_patch_token False --bf16 True --output_dir ./log/llava-v1.6-vicuna-13b-pretrain --num_train_epochs 1 --per_device_train_batch_size 32 --per_device_eval_batch_size 4 --gradient_accumulation_steps 1 --evaluation_strategy no --save_strategy steps --save_steps 24000 --save_total_limit 1 --learning_rate 1e-3 --weight_decay 0. --warmup_ratio 0.03 --lr_scheduler_type cosine --logging_steps 1 --tf32 True --model_max_length 2048 --gradient_checkpointing True --dataloader_num_workers 4 --lazy_preprocess True
+[2025-11-18 19:30:20,195] [INFO] [real_accelerator.py:203:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[93m [WARNING] [0m async_io requires the dev libaio .so object and headers but these were not found.
+[93m [WARNING] [0m async_io: please install the libaio-dev package with apt
+[93m [WARNING] [0m If libaio is already installed (perhaps from source), try setting the CFLAGS and LDFLAGS environment variables to where it can be found.
+[93m [WARNING] [0m Please specify the CUTLASS repo directory as environment variable $CUTLASS_PATH
+[93m [WARNING] [0m sparse_attn requires a torch version >= 1.5 and < 2.0 but detected 2.6
+[93m [WARNING] [0m using untested triton version (3.1.0), only 1.0.0 is known to be compatible
+/usr/local/lib/python3.12/site-packages/deepspeed/runtime/zero/linear.py:47: FutureWarning: `torch.cuda.amp.custom_fwd(args...)` is deprecated. Please use `torch.amp.custom_fwd(args..., device_type='cuda')` instead.
+  @autocast_custom_fwd
+/usr/local/lib/python3.12/site-packages/deepspeed/runtime/zero/linear.py:66: FutureWarning: `torch.cuda.amp.custom_bwd(args...)` is deprecated. Please use `torch.amp.custom_bwd(args..., device_type='cuda')` instead.
+  @autocast_custom_bwd
+[2025-11-18 19:30:30,135] [INFO] [launch.py:146:main] WORLD INFO DICT: {'localhost': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]}
+[2025-11-18 19:30:30,135] [INFO] [launch.py:152:main] nnodes=1, num_local_procs=16, node_rank=0
+[2025-11-18 19:30:30,135] [INFO] [launch.py:163:main] global_rank_mapping=defaultdict(<class 'list'>, {'localhost': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]})
+[2025-11-18 19:30:30,135] [INFO] [launch.py:164:main] dist_world_size=16
+[2025-11-18 19:30:30,135] [INFO] [launch.py:168:main] Setting CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15
+[2025-11-18 19:30:30,136] [INFO] [launch.py:256:main] process 14918 spawned with command: ['/usr/local/bin/python3', '-u', 'llava/train/train_mem.py', '--local_rank=0', '--deepspeed', './scripts/zero2.json', '--model_name_or_path', './checkpoints/llava-v1.6-vicuna-13b', '--version', 'plain', '--data_path', '/home/llava/LLaVA/data/LLaVA-Pretrain/blip_laion_cc_sbu_558k.json', '--image_folder', '/home/llava/LLaVA/data/LLaVA-Pretrain/images', '--vision_tower', './checkpoints/clip-vit-large-patch14-336', '--mm_projector_type', 'mlp2x_gelu', '--tune_mm_mlp_adapter', 'True', '--mm_vision_select_layer', '-2', '--mm_use_im_start_end', 'False', '--mm_use_im_patch_token', 'False', '--bf16', 'True', '--output_dir', './log/llava-v1.6-vicuna-13b-pretrain', '--num_train_epochs', '1', '--per_device_train_batch_size', '32', '--per_device_eval_batch_size', '4', '--gradient_accumulation_steps', '1', '--evaluation_strategy', 'no', '--save_strategy', 'steps', '--save_steps', '24000', '--save_total_limit', '1', '--learning_rate', '1e-3', '--weight_decay', '0.', '--warmup_ratio', '0.03', '--lr_scheduler_type', 'cosine', '--logging_steps', '1', '--tf32', 'True', '--model_max_length', '2048', '--gradient_checkpointing', 'True', '--dataloader_num_workers', '4', '--lazy_preprocess', 'True']
+[2025-11-18 19:30:30,136] [INFO] [launch.py:256:main] process 14919 spawned with command: ['/usr/local/bin/python3', '-u', 'llava/train/train_mem.py', '--local_rank=1', '--deepspeed', './scripts/zero2.json', '--model_name_or_path', './checkpoints/llava-v1.6-vicuna-13b', '--version', 'plain', '--data_path', '/home/llava/LLaVA/data/LLaVA-Pretrain/blip_laion_cc_sbu_558k.json', '--image_folder', '/home/llava/LLaVA/data/LLaVA-Pretrain/images', '--vision_tower', './checkpoints/clip-vit-large-patch14-336', '--mm_projector_type', 'mlp2x_gelu', '--tune_mm_mlp_adapter', 'True', '--mm_vision_select_layer', '-2', '--mm_use_im_start_end', 'False', '--mm_use_im_patch_token', 'False', '--bf16', 'True', '--output_dir', './log/llava-v1.6-vicuna-13b-pretrain', '--num_train_epochs', '1', '--per_device_train_batch_size', '32', '--per_device_eval_batch_size', '4', '--gradient_accumulation_steps', '1', '--evaluation_strategy', 'no', '--save_strategy', 'steps', '--save_steps', '24000', '--save_total_limit', '1', '--learning_rate', '1e-3', '--weight_decay', '0.', '--warmup_ratio', '0.03', '--lr_scheduler_type', 'cosine', '--logging_steps', '1', '--tf32', 'True', '--model_max_length', '2048', '--gradient_checkpointing', 'True', '--dataloader_num_workers', '4', '--lazy_preprocess', 'True']
+[2025-11-18 19:30:30,137] [INFO] [launch.py:256:main] process 14920 spawned with command: ['/usr/local/bin/python3', '-u', 'llava/train/train_mem.py', '--local_rank=2', '--deepspeed', './scripts/zero2.json', '--model_name_or_path', './checkpoints/llava-v1.6-vicuna-13b', '--version', 'plain', '--data_path', '/home/llava/LLaVA/data/LLaVA-Pretrain/blip_laion_cc_sbu_558k.json', '--image_folder', '/home/llava/LLaVA/data/LLaVA-Pretrain/images', '--vision_tower', './checkpoints/clip-vit-large-patch14-336', '--mm_projector_type', 'mlp2x_gelu', '--tune_mm_mlp_adapter', 'True', '--mm_vision_select_layer', '-2', '--mm_use_im_start_end', 'False', '--mm_use_im_patch_token', 'False', '--bf16', 'True', '--output_dir', './log/llava-v1.6-vicuna-13b-pretrain', '--num_train_epochs', '1', '--per_device_train_batch_size', '32', '--per_device_eval_batch_size', '4', '--gradient_accumulation_steps', '1', '--evaluation_strategy', 'no', '--save_strategy', 'steps', '--save_steps', '24000', '--save_total_limit', '1', '--learning_rate', '1e-3', '--weight_decay', '0.', '--warmup_ratio', '0.03', '--lr_scheduler_type', 'cosine', '--logging_steps', '1', '--tf32', 'True', '--model_max_length', '2048', '--gradient_checkpointing', 'True', '--dataloader_num_workers', '4', '--lazy_preprocess', 'True']
+[2025-11-18 19:30:30,137] [INFO] [launch.py:256:main] process 14921 spawned with command: ['/usr/local/bin/python3', '-u', 'llava/train/train_mem.py', '--local_rank=3', '--deepspeed', './scripts/zero2.json', '--model_name_or_path', './checkpoints/llava-v1.6-vicuna-13b', '--version', 'plain', '--data_path', '/home/llava/LLaVA/data/LLaVA-Pretrain/blip_laion_cc_sbu_558k.json', '--image_folder', '/home/llava/LLaVA/data/LLaVA-Pretrain/images', '--vision_tower', './checkpoints/clip-vit-large-patch14-336', '--mm_projector_type', 'mlp2x_gelu', '--tune_mm_mlp_adapter', 'True', '--mm_vision_select_layer', '-2', '--mm_use_im_start_end', 'False', '--mm_use_im_patch_token', 'False', '--bf16', 'True', '--output_dir', './log/llava-v1.6-vicuna-13b-pretrain', '--num_train_epochs', '1', '--per_device_train_batch_size', '32', '--per_device_eval_batch_size', '4', '--gradient_accumulation_steps', '1', '--evaluation_strategy', 'no', '--save_strategy', 'steps', '--save_steps', '24000', '--save_total_limit', '1', '--learning_rate', '1e-3', '--weight_decay', '0.', '--warmup_ratio', '0.03', '--lr_scheduler_type', 'cosine', '--logging_steps', '1', '--tf32', 'True', '--model_max_length', '2048', '--gradient_checkpointing', 'True', '--dataloader_num_workers', '4', '--lazy_preprocess', 'True']
+[2025-11-18 19:30:30,138] [INFO] [launch.py:256:main] process 14922 spawned with command: ['/usr/local/bin/python3', '-u', 'llava/train/train_mem.py', '--local_rank=4', '--deepspeed', './scripts/zero2.json', '--model_name_or_path', './checkpoints/llava-v1.6-vicuna-13b', '--version', 'plain', '--data_path', '/home/llava/LLaVA/data/LLaVA-Pretrain/blip_laion_cc_sbu_558k.json', '--image_folder', '/home/llava/LLaVA/data/LLaVA-Pretrain/images', '--vision_tower', './checkpoints/clip-vit-large-patch14-336', '--mm_projector_type', 'mlp2x_gelu', '--tune_mm_mlp_adapter', 'True', '--mm_vision_select_layer', '-2', '--mm_use_im_start_end', 'False', '--mm_use_im_patch_token', 'False', '--bf16', 'True', '--output_dir', './log/llava-v1.6-vicuna-13b-pretrain', '--num_train_epochs', '1', '--per_device_train_batch_size', '32', '--per_device_eval_batch_size', '4', '--gradient_accumulation_steps', '1', '--evaluation_strategy', 'no', '--save_strategy', 'steps', '--save_steps', '24000', '--save_total_limit', '1', '--learning_rate', '1e-3', '--weight_decay', '0.', '--warmup_ratio', '0.03', '--lr_scheduler_type', 'cosine', '--logging_steps', '1', '--tf32', 'True', '--model_max_length', '2048', '--gradient_checkpointing', 'True', '--dataloader_num_workers', '4', '--lazy_preprocess', 'True']
+[2025-11-18 19:30:30,138] [INFO] [launch.py:256:main] process 14923 spawned with command: ['/usr/local/bin/python3', '-u', 'llava/train/train_mem.py', '--local_rank=5', '--deepspeed', './scripts/zero2.json', '--model_name_or_path', './checkpoints/llava-v1.6-vicuna-13b', '--version', 'plain', '--data_path', '/home/llava/LLaVA/data/LLaVA-Pretrain/blip_laion_cc_sbu_558k.json', '--image_folder', '/home/llava/LLaVA/data/LLaVA-Pretrain/images', '--vision_tower', './checkpoints/clip-vit-large-patch14-336', '--mm_projector_type', 'mlp2x_gelu', '--tune_mm_mlp_adapter', 'True', '--mm_vision_select_layer', '-2', '--mm_use_im_start_end', 'False', '--mm_use_im_patch_token', 'False', '--bf16', 'True', '--output_dir', './log/llava-v1.6-vicuna-13b-pretrain', '--num_train_epochs', '1', '--per_device_train_batch_size', '32', '--per_device_eval_batch_size', '4', '--gradient_accumulation_steps', '1', '--evaluation_strategy', 'no', '--save_strategy', 'steps', '--save_steps', '24000', '--save_total_limit', '1', '--learning_rate', '1e-3', '--weight_decay', '0.', '--warmup_ratio', '0.03', '--lr_scheduler_type', 'cosine', '--logging_steps', '1', '--tf32', 'True', '--model_max_length', '2048', '--gradient_checkpointing', 'True', '--dataloader_num_workers', '4', '--lazy_preprocess', 'True']
+[2025-11-18 19:30:30,139] [INFO] [launch.py:256:main] process 14924 spawned with command: ['/usr/local/bin/python3', '-u', 'llava/train/train_mem.py', '--local_rank=6', '--deepspeed', './scripts/zero2.json', '--model_name_or_path', './checkpoints/llava-v1.6-vicuna-13b', '--version', 'plain', '--data_path', '/home/llava/LLaVA/data/LLaVA-Pretrain/blip_laion_cc_sbu_558k.json', '--image_folder', '/home/llava/LLaVA/data/LLaVA-Pretrain/images', '--vision_tower', './checkpoints/clip-vit-large-patch14-336', '--mm_projector_type', 'mlp2x_gelu', '--tune_mm_mlp_adapter', 'True', '--mm_vision_select_layer', '-2', '--mm_use_im_start_end', 'False', '--mm_use_im_patch_token', 'False', '--bf16', 'True', '--output_dir', './log/llava-v1.6-vicuna-13b-pretrain', '--num_train_epochs', '1', '--per_device_train_batch_size', '32', '--per_device_eval_batch_size', '4', '--gradient_accumulation_steps', '1', '--evaluation_strategy', 'no', '--save_strategy', 'steps', '--save_steps', '24000', '--save_total_limit', '1', '--learning_rate', '1e-3', '--weight_decay', '0.', '--warmup_ratio', '0.03', '--lr_scheduler_type', 'cosine', '--logging_steps', '1', '--tf32', 'True', '--model_max_length', '2048', '--gradient_checkpointing', 'True', '--dataloader_num_workers', '4', '--lazy_preprocess', 'True']
+[2025-11-18 19:30:30,139] [INFO] [launch.py:256:main] process 14925 spawned with command: ['/usr/local/bin/python3', '-u', 'llava/train/train_mem.py', '--local_rank=7', '--deepspeed', './scripts/zero2.json', '--model_name_or_path', './checkpoints/llava-v1.6-vicuna-13b', '--version', 'plain', '--data_path', '/home/llava/LLaVA/data/LLaVA-Pretrain/blip_laion_cc_sbu_558k.json', '--image_folder', '/home/llava/LLaVA/data/LLaVA-Pretrain/images', '--vision_tower', './checkpoints/clip-vit-large-patch14-336', '--mm_projector_type', 'mlp2x_gelu', '--tune_mm_mlp_adapter', 'True', '--mm_vision_select_layer', '-2', '--mm_use_im_start_end', 'False', '--mm_use_im_patch_token', 'False', '--bf16', 'True', '--output_dir', './log/llava-v1.6-vicuna-13b-pretrain', '--num_train_epochs', '1', '--per_device_train_batch_size', '32', '--per_device_eval_batch_size', '4', '--gradient_accumulation_steps', '1', '--evaluation_strategy', 'no', '--save_strategy', 'steps', '--save_steps', '24000', '--save_total_limit', '1', '--learning_rate', '1e-3', '--weight_decay', '0.', '--warmup_ratio', '0.03', '--lr_scheduler_type', 'cosine', '--logging_steps', '1', '--tf32', 'True', '--model_max_length', '2048', '--gradient_checkpointing', 'True', '--dataloader_num_workers', '4', '--lazy_preprocess', 'True']
+[2025-11-18 19:30:30,139] [INFO] [launch.py:256:main] process 14926 spawned with command: ['/usr/local/bin/python3', '-u', 'llava/train/train_mem.py', '--local_rank=8', '--deepspeed', './scripts/zero2.json', '--model_name_or_path', './checkpoints/llava-v1.6-vicuna-13b', '--version', 'plain', '--data_path', '/home/llava/LLaVA/data/LLaVA-Pretrain/blip_laion_cc_sbu_558k.json', '--image_folder', '/home/llava/LLaVA/data/LLaVA-Pretrain/images', '--vision_tower', './checkpoints/clip-vit-large-patch14-336', '--mm_projector_type', 'mlp2x_gelu', '--tune_mm_mlp_adapter', 'True', '--mm_vision_select_layer', '-2', '--mm_use_im_start_end', 'False', '--mm_use_im_patch_token', 'False', '--bf16', 'True', '--output_dir', './log/llava-v1.6-vicuna-13b-pretrain', '--num_train_epochs', '1', '--per_device_train_batch_size', '32', '--per_device_eval_batch_size', '4', '--gradient_accumulation_steps', '1', '--evaluation_strategy', 'no', '--save_strategy', 'steps', '--save_steps', '24000', '--save_total_limit', '1', '--learning_rate', '1e-3', '--weight_decay', '0.', '--warmup_ratio', '0.03', '--lr_scheduler_type', 'cosine', '--logging_steps', '1', '--tf32', 'True', '--model_max_length', '2048', '--gradient_checkpointing', 'True', '--dataloader_num_workers', '4', '--lazy_preprocess', 'True']
+[2025-11-18 19:30:30,140] [INFO] [launch.py:256:main] process 14927 spawned with command: ['/usr/local/bin/python3', '-u', 'llava/train/train_mem.py', '--local_rank=9', '--deepspeed', './scripts/zero2.json', '--model_name_or_path', './checkpoints/llava-v1.6-vicuna-13b', '--version', 'plain', '--data_path', '/home/llava/LLaVA/data/LLaVA-Pretrain/blip_laion_cc_sbu_558k.json', '--image_folder', '/home/llava/LLaVA/data/LLaVA-Pretrain/images', '--vision_tower', './checkpoints/clip-vit-large-patch14-336', '--mm_projector_type', 'mlp2x_gelu', '--tune_mm_mlp_adapter', 'True', '--mm_vision_select_layer', '-2', '--mm_use_im_start_end', 'False', '--mm_use_im_patch_token', 'False', '--bf16', 'True', '--output_dir', './log/llava-v1.6-vicuna-13b-pretrain', '--num_train_epochs', '1', '--per_device_train_batch_size', '32', '--per_device_eval_batch_size', '4', '--gradient_accumulation_steps', '1', '--evaluation_strategy', 'no', '--save_strategy', 'steps', '--save_steps', '24000', '--save_total_limit', '1', '--learning_rate', '1e-3', '--weight_decay', '0.', '--warmup_ratio', '0.03', '--lr_scheduler_type', 'cosine', '--logging_steps', '1', '--tf32', 'True', '--model_max_length', '2048', '--gradient_checkpointing', 'True', '--dataloader_num_workers', '4', '--lazy_preprocess', 'True']
+[2025-11-18 19:30:30,140] [INFO] [launch.py:256:main] process 14928 spawned with command: ['/usr/local/bin/python3', '-u', 'llava/train/train_mem.py', '--local_rank=10', '--deepspeed', './scripts/zero2.json', '--model_name_or_path', './checkpoints/llava-v1.6-vicuna-13b', '--version', 'plain', '--data_path', '/home/llava/LLaVA/data/LLaVA-Pretrain/blip_laion_cc_sbu_558k.json', '--image_folder', '/home/llava/LLaVA/data/LLaVA-Pretrain/images', '--vision_tower', './checkpoints/clip-vit-large-patch14-336', '--mm_projector_type', 'mlp2x_gelu', '--tune_mm_mlp_adapter', 'True', '--mm_vision_select_layer', '-2', '--mm_use_im_start_end', 'False', '--mm_use_im_patch_token', 'False', '--bf16', 'True', '--output_dir', './log/llava-v1.6-vicuna-13b-pretrain', '--num_train_epochs', '1', '--per_device_train_batch_size', '32', '--per_device_eval_batch_size', '4', '--gradient_accumulation_steps', '1', '--evaluation_strategy', 'no', '--save_strategy', 'steps', '--save_steps', '24000', '--save_total_limit', '1', '--learning_rate', '1e-3', '--weight_decay', '0.', '--warmup_ratio', '0.03', '--lr_scheduler_type', 'cosine', '--logging_steps', '1', '--tf32', 'True', '--model_max_length', '2048', '--gradient_checkpointing', 'True', '--dataloader_num_workers', '4', '--lazy_preprocess', 'True']
+[2025-11-18 19:30:30,141] [INFO] [launch.py:256:main] process 14929 spawned with command: ['/usr/local/bin/python3', '-u', 'llava/train/train_mem.py', '--local_rank=11', '--deepspeed', './scripts/zero2.json', '--model_name_or_path', './checkpoints/llava-v1.6-vicuna-13b', '--version', 'plain', '--data_path', '/home/llava/LLaVA/data/LLaVA-Pretrain/blip_laion_cc_sbu_558k.json', '--image_folder', '/home/llava/LLaVA/data/LLaVA-Pretrain/images', '--vision_tower', './checkpoints/clip-vit-large-patch14-336', '--mm_projector_type', 'mlp2x_gelu', '--tune_mm_mlp_adapter', 'True', '--mm_vision_select_layer', '-2', '--mm_use_im_start_end', 'False', '--mm_use_im_patch_token', 'False', '--bf16', 'True', '--output_dir', './log/llava-v1.6-vicuna-13b-pretrain', '--num_train_epochs', '1', '--per_device_train_batch_size', '32', '--per_device_eval_batch_size', '4', '--gradient_accumulation_steps', '1', '--evaluation_strategy', 'no', '--save_strategy', 'steps', '--save_steps', '24000', '--save_total_limit', '1', '--learning_rate', '1e-3', '--weight_decay', '0.', '--warmup_ratio', '0.03', '--lr_scheduler_type', 'cosine', '--logging_steps', '1', '--tf32', 'True', '--model_max_length', '2048', '--gradient_checkpointing', 'True', '--dataloader_num_workers', '4', '--lazy_preprocess', 'True']
+[2025-11-18 19:30:30,141] [INFO] [launch.py:256:main] process 14930 spawned with command: ['/usr/local/bin/python3', '-u', 'llava/train/train_mem.py', '--local_rank=12', '--deepspeed', './scripts/zero2.json', '--model_name_or_path', './checkpoints/llava-v1.6-vicuna-13b', '--version', 'plain', '--data_path', '/home/llava/LLaVA/data/LLaVA-Pretrain/blip_laion_cc_sbu_558k.json', '--image_folder', '/home/llava/LLaVA/data/LLaVA-Pretrain/images', '--vision_tower', './checkpoints/clip-vit-large-patch14-336', '--mm_projector_type', 'mlp2x_gelu', '--tune_mm_mlp_adapter', 'True', '--mm_vision_select_layer', '-2', '--mm_use_im_start_end', 'False', '--mm_use_im_patch_token', 'False', '--bf16', 'True', '--output_dir', './log/llava-v1.6-vicuna-13b-pretrain', '--num_train_epochs', '1', '--per_device_train_batch_size', '32', '--per_device_eval_batch_size', '4', '--gradient_accumulation_steps', '1', '--evaluation_strategy', 'no', '--save_strategy', 'steps', '--save_steps', '24000', '--save_total_limit', '1', '--learning_rate', '1e-3', '--weight_decay', '0.', '--warmup_ratio', '0.03', '--lr_scheduler_type', 'cosine', '--logging_steps', '1', '--tf32', 'True', '--model_max_length', '2048', '--gradient_checkpointing', 'True', '--dataloader_num_workers', '4', '--lazy_preprocess', 'True']
+[2025-11-18 19:30:30,142] [INFO] [launch.py:256:main] process 14931 spawned with command: ['/usr/local/bin/python3', '-u', 'llava/train/train_mem.py', '--local_rank=13', '--deepspeed', './scripts/zero2.json', '--model_name_or_path', './checkpoints/llava-v1.6-vicuna-13b', '--version', 'plain', '--data_path', '/home/llava/LLaVA/data/LLaVA-Pretrain/blip_laion_cc_sbu_558k.json', '--image_folder', '/home/llava/LLaVA/data/LLaVA-Pretrain/images', '--vision_tower', './checkpoints/clip-vit-large-patch14-336', '--mm_projector_type', 'mlp2x_gelu', '--tune_mm_mlp_adapter', 'True', '--mm_vision_select_layer', '-2', '--mm_use_im_start_end', 'False', '--mm_use_im_patch_token', 'False', '--bf16', 'True', '--output_dir', './log/llava-v1.6-vicuna-13b-pretrain', '--num_train_epochs', '1', '--per_device_train_batch_size', '32', '--per_device_eval_batch_size', '4', '--gradient_accumulation_steps', '1', '--evaluation_strategy', 'no', '--save_strategy', 'steps', '--save_steps', '24000', '--save_total_limit', '1', '--learning_rate', '1e-3', '--weight_decay', '0.', '--warmup_ratio', '0.03', '--lr_scheduler_type', 'cosine', '--logging_steps', '1', '--tf32', 'True', '--model_max_length', '2048', '--gradient_checkpointing', 'True', '--dataloader_num_workers', '4', '--lazy_preprocess', 'True']
+[2025-11-18 19:30:30,142] [INFO] [launch.py:256:main] process 14932 spawned with command: ['/usr/local/bin/python3', '-u', 'llava/train/train_mem.py', '--local_rank=14', '--deepspeed', './scripts/zero2.json', '--model_name_or_path', './checkpoints/llava-v1.6-vicuna-13b', '--version', 'plain', '--data_path', '/home/llava/LLaVA/data/LLaVA-Pretrain/blip_laion_cc_sbu_558k.json', '--image_folder', '/home/llava/LLaVA/data/LLaVA-Pretrain/images', '--vision_tower', './checkpoints/clip-vit-large-patch14-336', '--mm_projector_type', 'mlp2x_gelu', '--tune_mm_mlp_adapter', 'True', '--mm_vision_select_layer', '-2', '--mm_use_im_start_end', 'False', '--mm_use_im_patch_token', 'False', '--bf16', 'True', '--output_dir', './log/llava-v1.6-vicuna-13b-pretrain', '--num_train_epochs', '1', '--per_device_train_batch_size', '32', '--per_device_eval_batch_size', '4', '--gradient_accumulation_steps', '1', '--evaluation_strategy', 'no', '--save_strategy', 'steps', '--save_steps', '24000', '--save_total_limit', '1', '--learning_rate', '1e-3', '--weight_decay', '0.', '--warmup_ratio', '0.03', '--lr_scheduler_type', 'cosine', '--logging_steps', '1', '--tf32', 'True', '--model_max_length', '2048', '--gradient_checkpointing', 'True', '--dataloader_num_workers', '4', '--lazy_preprocess', 'True']
+[2025-11-18 19:30:30,143] [INFO] [launch.py:256:main] process 14933 spawned with command: ['/usr/local/bin/python3', '-u', 'llava/train/train_mem.py', '--local_rank=15', '--deepspeed', './scripts/zero2.json', '--model_name_or_path', './checkpoints/llava-v1.6-vicuna-13b', '--version', 'plain', '--data_path', '/home/llava/LLaVA/data/LLaVA-Pretrain/blip_laion_cc_sbu_558k.json', '--image_folder', '/home/llava/LLaVA/data/LLaVA-Pretrain/images', '--vision_tower', './checkpoints/clip-vit-large-patch14-336', '--mm_projector_type', 'mlp2x_gelu', '--tune_mm_mlp_adapter', 'True', '--mm_vision_select_layer', '-2', '--mm_use_im_start_end', 'False', '--mm_use_im_patch_token', 'False', '--bf16', 'True', '--output_dir', './log/llava-v1.6-vicuna-13b-pretrain', '--num_train_epochs', '1', '--per_device_train_batch_size', '32', '--per_device_eval_batch_size', '4', '--gradient_accumulation_steps', '1', '--evaluation_strategy', 'no', '--save_strategy', 'steps', '--save_steps', '24000', '--save_total_limit', '1', '--learning_rate', '1e-3', '--weight_decay', '0.', '--warmup_ratio', '0.03', '--lr_scheduler_type', 'cosine', '--logging_steps', '1', '--tf32', 'True', '--model_max_length', '2048', '--gradient_checkpointing', 'True', '--dataloader_num_workers', '4', '--lazy_preprocess', 'True']
+[2025-11-18 19:30:45,362] [INFO] [real_accelerator.py:203:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[93m [WARNING] [0m async_io requires the dev libaio .so object and headers but these were not found.
+[93m [WARNING] [0m async_io: please install the libaio-dev package with apt
+[93m [WARNING] [0m If libaio is already installed (perhaps from source), try setting the CFLAGS and LDFLAGS environment variables to where it can be found.
+[93m [WARNING] [0m Please specify the CUTLASS repo directory as environment variable $CUTLASS_PATH
+[93m [WARNING] [0m sparse_attn requires a torch version >= 1.5 and < 2.0 but detected 2.6
+[93m [WARNING] [0m using untested triton version (3.1.0), only 1.0.0 is known to be compatible
+[2025-11-18 19:30:45,768] [INFO] [real_accelerator.py:203:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[93m [WARNING] [0m async_io requires the dev libaio .so object and headers but these were not found.
+[93m [WARNING] [0m async_io: please install the libaio-dev package with apt
+[93m [WARNING] [0m If libaio is already installed (perhaps from source), try setting the CFLAGS and LDFLAGS environment variables to where it can be found.
+[93m [WARNING] [0m Please specify the CUTLASS repo directory as environment variable $CUTLASS_PATH
+[93m [WARNING] [0m sparse_attn requires a torch version >= 1.5 and < 2.0 but detected 2.6
+[93m [WARNING] [0m using untested triton version (3.1.0), only 1.0.0 is known to be compatible
+[2025-11-18 19:30:46,132] [INFO] [real_accelerator.py:203:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+/usr/local/lib/python3.12/site-packages/deepspeed/runtime/zero/linear.py:47: FutureWarning: `torch.cuda.amp.custom_fwd(args...)` is deprecated. Please use `torch.amp.custom_fwd(args..., device_type='cuda')` instead.
+  @autocast_custom_fwd
+/usr/local/lib/python3.12/site-packages/deepspeed/runtime/zero/linear.py:66: FutureWarning: `torch.cuda.amp.custom_bwd(args...)` is deprecated. Please use `torch.amp.custom_bwd(args..., device_type='cuda')` instead.
+  @autocast_custom_bwd
+[93m [WARNING] [0m async_io requires the dev libaio .so object and headers but these were not found.
+[93m [WARNING] [0m async_io: please install the libaio-dev package with apt
+[93m [WARNING] [0m If libaio is already installed (perhaps from source), try setting the CFLAGS and LDFLAGS environment variables to where it can be found.
+[93m [WARNING] [0m Please specify the CUTLASS repo directory as environment variable $CUTLASS_PATH
+/usr/local/lib/python3.12/site-packages/deepspeed/runtime/zero/linear.py:47: FutureWarning: `torch.cuda.amp.custom_fwd(args...)` is deprecated. Please use `torch.amp.custom_fwd(args..., device_type='cuda')` instead.
+  @autocast_custom_fwd
+/usr/local/lib/python3.12/site-packages/deepspeed/runtime/zero/linear.py:66: FutureWarning: `torch.cuda.amp.custom_bwd(args...)` is deprecated. Please use `torch.amp.custom_bwd(args..., device_type='cuda')` instead.
+  @autocast_custom_bwd
+[93m [WARNING] [0m sparse_attn requires a torch version >= 1.5 and < 2.0 but detected 2.6
+[93m [WARNING] [0m using untested triton version (3.1.0), only 1.0.0 is known to be compatible
+[2025-11-18 19:30:46,345] [INFO] [comm.py:637:init_distributed] cdb=None
+[2025-11-18 19:30:46,525] [INFO] [real_accelerator.py:203:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-11-18 19:30:46,545] [INFO] [comm.py:637:init_distributed] cdb=None
+[93m [WARNING] [0m async_io requires the dev libaio .so object and headers but these were not found.
+[93m [WARNING] [0m async_io: please install the libaio-dev package with apt
+[93m [WARNING] [0m If libaio is already installed (perhaps from source), try setting the CFLAGS and LDFLAGS environment variables to where it can be found.
+[93m [WARNING] [0m Please specify the CUTLASS repo directory as environment variable $CUTLASS_PATH
+[93m [WARNING] [0m sparse_attn requires a torch version >= 1.5 and < 2.0 but detected 2.6
+[93m [WARNING] [0m using untested triton version (3.1.0), only 1.0.0 is known to be compatible
+/usr/local/lib/python3.12/site-packages/deepspeed/runtime/zero/linear.py:47: FutureWarning: `torch.cuda.amp.custom_fwd(args...)` is deprecated. Please use `torch.amp.custom_fwd(args..., device_type='cuda')` instead.
+  @autocast_custom_fwd
+/usr/local/lib/python3.12/site-packages/deepspeed/runtime/zero/linear.py:66: FutureWarning: `torch.cuda.amp.custom_bwd(args...)` is deprecated. Please use `torch.amp.custom_bwd(args..., device_type='cuda')` instead.
+  @autocast_custom_bwd
+/usr/local/lib/python3.12/site-packages/deepspeed/runtime/zero/linear.py:47: FutureWarning: `torch.cuda.amp.custom_fwd(args...)` is deprecated. Please use `torch.amp.custom_fwd(args..., device_type='cuda')` instead.
+  @autocast_custom_fwd
+/usr/local/lib/python3.12/site-packages/deepspeed/runtime/zero/linear.py:66: FutureWarning: `torch.cuda.amp.custom_bwd(args...)` is deprecated. Please use `torch.amp.custom_bwd(args..., device_type='cuda')` instead.
+  @autocast_custom_bwd
+[2025-11-18 19:30:47,088] [INFO] [real_accelerator.py:203:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-11-18 19:30:47,170] [INFO] [comm.py:637:init_distributed] cdb=None
+[2025-11-18 19:30:47,170] [INFO] [comm.py:668:init_distributed] Initializing TorchBackend in DeepSpeed with backend nccl
+[93m [WARNING] [0m async_io requires the dev libaio .so object and headers but these were not found.
+[93m [WARNING] [0m async_io: please install the libaio-dev package with apt
+[93m [WARNING] [0m If libaio is already installed (perhaps from source), try setting the CFLAGS and LDFLAGS environment variables to where it can be found.
+[93m [WARNING] [0m Please specify the CUTLASS repo directory as environment variable $CUTLASS_PATH
+Using the `WANDB_DISABLED` environment variable is deprecated and will be removed in v5. Use the --report_to flag to control the integrations used for logging result (for instance --report_to none).
+You are using a model of type llava to instantiate a model of type llava_llama. This is not supported for all configurations of models and can yield errors.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+[2025-11-18 19:30:47,290] [INFO] [comm.py:637:init_distributed] cdb=None
+Using the `WANDB_DISABLED` environment variable is deprecated and will be removed in v5. Use the --report_to flag to control the integrations used for logging result (for instance --report_to none).
+You are using a model of type llava to instantiate a model of type llava_llama. This is not supported for all configurations of models and can yield errors.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+[93m [WARNING] [0m sparse_attn requires a torch version >= 1.5 and < 2.0 but detected 2.6
+[93m [WARNING] [0m using untested triton version (3.1.0), only 1.0.0 is known to be compatible
+[2025-11-18 19:30:47,618] [INFO] [real_accelerator.py:203:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-11-18 19:30:47,661] [INFO] [real_accelerator.py:203:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-11-18 19:30:47,704] [INFO] [real_accelerator.py:203:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-11-18 19:30:47,718] [INFO] [real_accelerator.py:203:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+/usr/local/lib/python3.12/site-packages/deepspeed/runtime/zero/linear.py:47: FutureWarning: `torch.cuda.amp.custom_fwd(args...)` is deprecated. Please use `torch.amp.custom_fwd(args..., device_type='cuda')` instead.
+  @autocast_custom_fwd
+/usr/local/lib/python3.12/site-packages/deepspeed/runtime/zero/linear.py:66: FutureWarning: `torch.cuda.amp.custom_bwd(args...)` is deprecated. Please use `torch.amp.custom_bwd(args..., device_type='cuda')` instead.
+  @autocast_custom_bwd
+[93m [WARNING] [0m async_io requires the dev libaio .so object and headers but these were not found.
+[93m [WARNING] [0m async_io: please install the libaio-dev package with apt
+[93m [WARNING] [0m If libaio is already installed (perhaps from source), try setting the CFLAGS and LDFLAGS environment variables to where it can be found.
+[93m [WARNING] [0m Please specify the CUTLASS repo directory as environment variable $CUTLASS_PATH
+[93m [WARNING] [0m async_io requires the dev libaio .so object and headers but these were not found.
+[93m [WARNING] [0m async_io: please install the libaio-dev package with apt
+[93m [WARNING] [0m If libaio is already installed (perhaps from source), try setting the CFLAGS and LDFLAGS environment variables to where it can be found.
+[93m [WARNING] [0m Please specify the CUTLASS repo directory as environment variable $CUTLASS_PATH
+Using the `WANDB_DISABLED` environment variable is deprecated and will be removed in v5. Use the --report_to flag to control the integrations used for logging result (for instance --report_to none).
+You are using a model of type llava to instantiate a model of type llava_llama. This is not supported for all configurations of models and can yield errors.
+[93m [WARNING] [0m async_io requires the dev libaio .so object and headers but these were not found.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+[93m [WARNING] [0m async_io requires the dev libaio .so object and headers but these were not found.
+[93m [WARNING] [0m async_io: please install the libaio-dev package with apt
+[93m [WARNING] [0m If libaio is already installed (perhaps from source), try setting the CFLAGS and LDFLAGS environment variables to where it can be found.
+[93m [WARNING] [0m Please specify the CUTLASS repo directory as environment variable $CUTLASS_PATH
+[93m [WARNING] [0m async_io: please install the libaio-dev package with apt
+[93m [WARNING] [0m If libaio is already installed (perhaps from source), try setting the CFLAGS and LDFLAGS environment variables to where it can be found.
+[93m [WARNING] [0m Please specify the CUTLASS repo directory as environment variable $CUTLASS_PATH
+[2025-11-18 19:30:47,852] [INFO] [real_accelerator.py:203:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[93m [WARNING] [0m sparse_attn requires a torch version >= 1.5 and < 2.0 but detected 2.6
+[93m [WARNING] [0m using untested triton version (3.1.0), only 1.0.0 is known to be compatible
+[2025-11-18 19:30:47,908] [INFO] [real_accelerator.py:203:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[93m [WARNING] [0m sparse_attn requires a torch version >= 1.5 and < 2.0 but detected 2.6
+[93m [WARNING] [0m using untested triton version (3.1.0), only 1.0.0 is known to be compatible
+[2025-11-18 19:30:47,935] [INFO] [comm.py:637:init_distributed] cdb=None
+Using the `WANDB_DISABLED` environment variable is deprecated and will be removed in v5. Use the --report_to flag to control the integrations used for logging result (for instance --report_to none).
+[2025-11-18 19:30:47,962] [INFO] [real_accelerator.py:203:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+You are using a model of type llava to instantiate a model of type llava_llama. This is not supported for all configurations of models and can yield errors.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+[93m [WARNING] [0m sparse_attn requires a torch version >= 1.5 and < 2.0 but detected 2.6
+[93m [WARNING] [0m using untested triton version (3.1.0), only 1.0.0 is known to be compatible
+[93m [WARNING] [0m async_io requires the dev libaio .so object and headers but these were not found.
+[93m [WARNING] [0m sparse_attn requires a torch version >= 1.5 and < 2.0 but detected 2.6
+[93m [WARNING] [0m using untested triton version (3.1.0), only 1.0.0 is known to be compatible
+[93m [WARNING] [0m async_io: please install the libaio-dev package with apt
+[93m [WARNING] [0m If libaio is already installed (perhaps from source), try setting the CFLAGS and LDFLAGS environment variables to where it can be found.
+[93m [WARNING] [0m Please specify the CUTLASS repo directory as environment variable $CUTLASS_PATH
+[93m [WARNING] [0m async_io requires the dev libaio .so object and headers but these were not found.
+[93m [WARNING] [0m async_io: please install the libaio-dev package with apt
+[93m [WARNING] [0m If libaio is already installed (perhaps from source), try setting the CFLAGS and LDFLAGS environment variables to where it can be found.
+[93m [WARNING] [0m Please specify the CUTLASS repo directory as environment variable $CUTLASS_PATH
+[2025-11-18 19:30:48,070] [INFO] [real_accelerator.py:203:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[93m [WARNING] [0m async_io requires the dev libaio .so object and headers but these were not found.
+[93m [WARNING] [0m async_io: please install the libaio-dev package with apt
+[93m [WARNING] [0m If libaio is already installed (perhaps from source), try setting the CFLAGS and LDFLAGS environment variables to where it can be found.
+[93m [WARNING] [0m Please specify the CUTLASS repo directory as environment variable $CUTLASS_PATH
+[93m [WARNING] [0m sparse_attn requires a torch version >= 1.5 and < 2.0 but detected 2.6
+[93m [WARNING] [0m using untested triton version (3.1.0), only 1.0.0 is known to be compatible
+[93m [WARNING] [0m async_io requires the dev libaio .so object and headers but these were not found.
+[2025-11-18 19:30:48,213] [INFO] [real_accelerator.py:203:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[93m [WARNING] [0m async_io: please install the libaio-dev package with apt
+[93m [WARNING] [0m If libaio is already installed (perhaps from source), try setting the CFLAGS and LDFLAGS environment variables to where it can be found.
+[93m [WARNING] [0m Please specify the CUTLASS repo directory as environment variable $CUTLASS_PATH
+[93m [WARNING] [0m sparse_attn requires a torch version >= 1.5 and < 2.0 but detected 2.6
+[93m [WARNING] [0m using untested triton version (3.1.0), only 1.0.0 is known to be compatible
+/usr/local/lib/python3.12/site-packages/deepspeed/runtime/zero/linear.py:47: FutureWarning: `torch.cuda.amp.custom_fwd(args...)` is deprecated. Please use `torch.amp.custom_fwd(args..., device_type='cuda')` instead.
+  @autocast_custom_fwd
+/usr/local/lib/python3.12/site-packages/deepspeed/runtime/zero/linear.py:66: FutureWarning: `torch.cuda.amp.custom_bwd(args...)` is deprecated. Please use `torch.amp.custom_bwd(args..., device_type='cuda')` instead.
+  @autocast_custom_bwd
+[93m [WARNING] [0m sparse_attn requires a torch version >= 1.5 and < 2.0 but detected 2.6
+[93m [WARNING] [0m using untested triton version (3.1.0), only 1.0.0 is known to be compatible
+/usr/local/lib/python3.12/site-packages/deepspeed/runtime/zero/linear.py:47: FutureWarning: `torch.cuda.amp.custom_fwd(args...)` is deprecated. Please use `torch.amp.custom_fwd(args..., device_type='cuda')` instead.
+  @autocast_custom_fwd
+/usr/local/lib/python3.12/site-packages/deepspeed/runtime/zero/linear.py:66: FutureWarning: `torch.cuda.amp.custom_bwd(args...)` is deprecated. Please use `torch.amp.custom_bwd(args..., device_type='cuda')` instead.
+  @autocast_custom_bwd
+[2025-11-18 19:30:48,340] [INFO] [real_accelerator.py:203:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-11-18 19:30:48,348] [INFO] [real_accelerator.py:203:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[93m [WARNING] [0m async_io requires the dev libaio .so object and headers but these were not found.
+[93m [WARNING] [0m async_io: please install the libaio-dev package with apt
+[93m [WARNING] [0m If libaio is already installed (perhaps from source), try setting the CFLAGS and LDFLAGS environment variables to where it can be found.
+[93m [WARNING] [0m Please specify the CUTLASS repo directory as environment variable $CUTLASS_PATH
+[93m [WARNING] [0m sparse_attn requires a torch version >= 1.5 and < 2.0 but detected 2.6
+[93m [WARNING] [0m using untested triton version (3.1.0), only 1.0.0 is known to be compatible
+[2025-11-18 19:30:48,449] [INFO] [comm.py:637:init_distributed] cdb=None
+[93m [WARNING] [0m async_io requires the dev libaio .so object and headers but these were not found.
+Using the `WANDB_DISABLED` environment variable is deprecated and will be removed in v5. Use the --report_to flag to control the integrations used for logging result (for instance --report_to none).
+[93m [WARNING] [0m async_io requires the dev libaio .so object and headers but these were not found.
+You are using a model of type llava to instantiate a model of type llava_llama. This is not supported for all configurations of models and can yield errors.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+/usr/local/lib/python3.12/site-packages/deepspeed/runtime/zero/linear.py:47: FutureWarning: `torch.cuda.amp.custom_fwd(args...)` is deprecated. Please use `torch.amp.custom_fwd(args..., device_type='cuda')` instead.
+  @autocast_custom_fwd
+/usr/local/lib/python3.12/site-packages/deepspeed/runtime/zero/linear.py:66: FutureWarning: `torch.cuda.amp.custom_bwd(args...)` is deprecated. Please use `torch.amp.custom_bwd(args..., device_type='cuda')` instead.
+  @autocast_custom_bwd
+[93m [WARNING] [0m async_io: please install the libaio-dev package with apt
+[93m [WARNING] [0m If libaio is already installed (perhaps from source), try setting the CFLAGS and LDFLAGS environment variables to where it can be found.
+[93m [WARNING] [0m Please specify the CUTLASS repo directory as environment variable $CUTLASS_PATH
+[93m [WARNING] [0m async_io: please install the libaio-dev package with apt
+[93m [WARNING] [0m If libaio is already installed (perhaps from source), try setting the CFLAGS and LDFLAGS environment variables to where it can be found.
+[93m [WARNING] [0m Please specify the CUTLASS repo directory as environment variable $CUTLASS_PATH
+/usr/local/lib/python3.12/site-packages/deepspeed/runtime/zero/linear.py:47: FutureWarning: `torch.cuda.amp.custom_fwd(args...)` is deprecated. Please use `torch.amp.custom_fwd(args..., device_type='cuda')` instead.
+  @autocast_custom_fwd
+/usr/local/lib/python3.12/site-packages/deepspeed/runtime/zero/linear.py:66: FutureWarning: `torch.cuda.amp.custom_bwd(args...)` is deprecated. Please use `torch.amp.custom_bwd(args..., device_type='cuda')` instead.
+  @autocast_custom_bwd
+/usr/local/lib/python3.12/site-packages/deepspeed/runtime/zero/linear.py:47: FutureWarning: `torch.cuda.amp.custom_fwd(args...)` is deprecated. Please use `torch.amp.custom_fwd(args..., device_type='cuda')` instead.
+  @autocast_custom_fwd
+/usr/local/lib/python3.12/site-packages/deepspeed/runtime/zero/linear.py:66: FutureWarning: `torch.cuda.amp.custom_bwd(args...)` is deprecated. Please use `torch.amp.custom_bwd(args..., device_type='cuda')` instead.
+  @autocast_custom_bwd
+[93m [WARNING] [0m sparse_attn requires a torch version >= 1.5 and < 2.0 but detected 2.6
+[93m [WARNING] [0m using untested triton version (3.1.0), only 1.0.0 is known to be compatible
+[2025-11-18 19:30:48,526] [INFO] [comm.py:637:init_distributed] cdb=None
+Using the `WANDB_DISABLED` environment variable is deprecated and will be removed in v5. Use the --report_to flag to control the integrations used for logging result (for instance --report_to none).
+You are using a model of type llava to instantiate a model of type llava_llama. This is not supported for all configurations of models and can yield errors.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+[93m [WARNING] [0m sparse_attn requires a torch version >= 1.5 and < 2.0 but detected 2.6
+[93m [WARNING] [0m using untested triton version (3.1.0), only 1.0.0 is known to be compatible
+[93m [WARNING] [0m sparse_attn requires a torch version >= 1.5 and < 2.0 but detected 2.6
+[93m [WARNING] [0m using untested triton version (3.1.0), only 1.0.0 is known to be compatible
+/usr/local/lib/python3.12/site-packages/deepspeed/runtime/zero/linear.py:47: FutureWarning: `torch.cuda.amp.custom_fwd(args...)` is deprecated. Please use `torch.amp.custom_fwd(args..., device_type='cuda')` instead.
+  @autocast_custom_fwd
+/usr/local/lib/python3.12/site-packages/deepspeed/runtime/zero/linear.py:66: FutureWarning: `torch.cuda.amp.custom_bwd(args...)` is deprecated. Please use `torch.amp.custom_bwd(args..., device_type='cuda')` instead.
+  @autocast_custom_bwd
+/usr/local/lib/python3.12/site-packages/deepspeed/runtime/zero/linear.py:47: FutureWarning: `torch.cuda.amp.custom_fwd(args...)` is deprecated. Please use `torch.amp.custom_fwd(args..., device_type='cuda')` instead.
+  @autocast_custom_fwd
+/usr/local/lib/python3.12/site-packages/deepspeed/runtime/zero/linear.py:66: FutureWarning: `torch.cuda.amp.custom_bwd(args...)` is deprecated. Please use `torch.amp.custom_bwd(args..., device_type='cuda')` instead.
+  @autocast_custom_bwd
+[2025-11-18 19:30:48,699] [INFO] [comm.py:637:init_distributed] cdb=None
+Using the `WANDB_DISABLED` environment variable is deprecated and will be removed in v5. Use the --report_to flag to control the integrations used for logging result (for instance --report_to none).
+[2025-11-18 19:30:48,729] [INFO] [comm.py:637:init_distributed] cdb=None
+[2025-11-18 19:30:48,730] [INFO] [comm.py:637:init_distributed] cdb=None
+You are using a model of type llava to instantiate a model of type llava_llama. This is not supported for all configurations of models and can yield errors.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+Using the `WANDB_DISABLED` environment variable is deprecated and will be removed in v5. Use the --report_to flag to control the integrations used for logging result (for instance --report_to none).
+You are using a model of type llava to instantiate a model of type llava_llama. This is not supported for all configurations of models and can yield errors.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+/usr/local/lib/python3.12/site-packages/deepspeed/runtime/zero/linear.py:47: FutureWarning: `torch.cuda.amp.custom_fwd(args...)` is deprecated. Please use `torch.amp.custom_fwd(args..., device_type='cuda')` instead.
+  @autocast_custom_fwd
+/usr/local/lib/python3.12/site-packages/deepspeed/runtime/zero/linear.py:66: FutureWarning: `torch.cuda.amp.custom_bwd(args...)` is deprecated. Please use `torch.amp.custom_bwd(args..., device_type='cuda')` instead.
+  @autocast_custom_bwd
+Using the `WANDB_DISABLED` environment variable is deprecated and will be removed in v5. Use the --report_to flag to control the integrations used for logging result (for instance --report_to none).
+You are using a model of type llava to instantiate a model of type llava_llama. This is not supported for all configurations of models and can yield errors.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+/usr/local/lib/python3.12/site-packages/deepspeed/runtime/zero/linear.py:47: FutureWarning: `torch.cuda.amp.custom_fwd(args...)` is deprecated. Please use `torch.amp.custom_fwd(args..., device_type='cuda')` instead.
+  @autocast_custom_fwd
+/usr/local/lib/python3.12/site-packages/deepspeed/runtime/zero/linear.py:66: FutureWarning: `torch.cuda.amp.custom_bwd(args...)` is deprecated. Please use `torch.amp.custom_bwd(args..., device_type='cuda')` instead.
+  @autocast_custom_bwd
+[2025-11-18 19:30:48,904] [INFO] [comm.py:637:init_distributed] cdb=None
+[2025-11-18 19:30:48,908] [INFO] [comm.py:637:init_distributed] cdb=None
+Using the `WANDB_DISABLED` environment variable is deprecated and will be removed in v5. Use the --report_to flag to control the integrations used for logging result (for instance --report_to none).
+You are using a model of type llava to instantiate a model of type llava_llama. This is not supported for all configurations of models and can yield errors.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+Using the `WANDB_DISABLED` environment variable is deprecated and will be removed in v5. Use the --report_to flag to control the integrations used for logging result (for instance --report_to none).
+You are using a model of type llava to instantiate a model of type llava_llama. This is not supported for all configurations of models and can yield errors.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+[2025-11-18 19:30:49,011] [INFO] [comm.py:637:init_distributed] cdb=None
+Using the `WANDB_DISABLED` environment variable is deprecated and will be removed in v5. Use the --report_to flag to control the integrations used for logging result (for instance --report_to none).
+You are using a model of type llava to instantiate a model of type llava_llama. This is not supported for all configurations of models and can yield errors.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+[2025-11-18 19:30:49,090] [INFO] [comm.py:637:init_distributed] cdb=None
+/usr/local/lib/python3.12/site-packages/deepspeed/runtime/zero/linear.py:47: FutureWarning: `torch.cuda.amp.custom_fwd(args...)` is deprecated. Please use `torch.amp.custom_fwd(args..., device_type='cuda')` instead.
+  @autocast_custom_fwd
+Using the `WANDB_DISABLED` environment variable is deprecated and will be removed in v5. Use the --report_to flag to control the integrations used for logging result (for instance --report_to none).
+/usr/local/lib/python3.12/site-packages/deepspeed/runtime/zero/linear.py:66: FutureWarning: `torch.cuda.amp.custom_bwd(args...)` is deprecated. Please use `torch.amp.custom_bwd(args..., device_type='cuda')` instead.
+  @autocast_custom_bwd
+You are using a model of type llava to instantiate a model of type llava_llama. This is not supported for all configurations of models and can yield errors.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+/usr/local/lib/python3.12/site-packages/deepspeed/runtime/zero/linear.py:47: FutureWarning: `torch.cuda.amp.custom_fwd(args...)` is deprecated. Please use `torch.amp.custom_fwd(args..., device_type='cuda')` instead.
+  @autocast_custom_fwd
+/usr/local/lib/python3.12/site-packages/deepspeed/runtime/zero/linear.py:66: FutureWarning: `torch.cuda.amp.custom_bwd(args...)` is deprecated. Please use `torch.amp.custom_bwd(args..., device_type='cuda')` instead.
+  @autocast_custom_bwd
+[2025-11-18 19:30:49,393] [INFO] [comm.py:637:init_distributed] cdb=None
+Using the `WANDB_DISABLED` environment variable is deprecated and will be removed in v5. Use the --report_to flag to control the integrations used for logging result (for instance --report_to none).
+You are using a model of type llava to instantiate a model of type llava_llama. This is not supported for all configurations of models and can yield errors.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+[2025-11-18 19:30:49,688] [INFO] [comm.py:637:init_distributed] cdb=None
+Using the `WANDB_DISABLED` environment variable is deprecated and will be removed in v5. Use the --report_to flag to control the integrations used for logging result (for instance --report_to none).
+Using the `WANDB_DISABLED` environment variable is deprecated and will be removed in v5. Use the --report_to flag to control the integrations used for logging result (for instance --report_to none).
+You are using a model of type llava to instantiate a model of type llava_llama. This is not supported for all configurations of models and can yield errors.
+You are using a model of type llava to instantiate a model of type llava_llama. This is not supported for all configurations of models and can yield errors.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:  17%|█▋        | 1/6 [00:01<00:09,  1.81s/it]Loading checkpoint shards:  17%|█▋        | 1/6 [00:01<00:08,  1.73s/it]Loading checkpoint shards:  33%|███▎      | 2/6 [00:03<00:06,  1.74s/it]Loading checkpoint shards:  33%|███▎      | 2/6 [00:03<00:06,  1.71s/it]Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 3/6 [00:05<00:05,  1.70s/it]Loading checkpoint shards:  17%|█▋        | 1/6 [00:00<00:03,  1.27it/s]Loading checkpoint shards:  50%|█████     | 3/6 [00:04<00:04,  1.45s/it]Loading checkpoint shards:  17%|█▋        | 1/6 [00:01<00:05,  1.17s/it]Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 2/6 [00:01<00:03,  1.03it/s]Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:06<00:03,  1.56s/it]Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:05<00:02,  1.41s/it]Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:  17%|█▋        | 1/6 [00:01<00:07,  1.42s/it]Loading checkpoint shards:  33%|███▎      | 2/6 [00:02<00:05,  1.46s/it]Loading checkpoint shards:  17%|█▋        | 1/6 [00:01<00:08,  1.72s/it]Loading checkpoint shards:  17%|█▋        | 1/6 [00:01<00:09,  1.89s/it]Loading checkpoint shards:  17%|█▋        | 1/6 [00:01<00:09,  1.91s/it]Loading checkpoint shards:  17%|█▋        | 1/6 [00:02<00:10,  2.12s/it]Loading checkpoint shards:  17%|█▋        | 1/6 [00:02<00:11,  2.21s/it]Loading checkpoint shards:  17%|█▋        | 1/6 [00:02<00:11,  2.24s/it]Loading checkpoint shards:  17%|█▋        | 1/6 [00:02<00:10,  2.02s/it]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:08<00:01,  1.73s/it]Loading checkpoint shards:  50%|█████     | 3/6 [00:04<00:04,  1.55s/it]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:07<00:01,  1.62s/it]Loading checkpoint shards:  17%|█▋        | 1/6 [00:02<00:11,  2.25s/it]Loading checkpoint shards:  17%|█▋        | 1/6 [00:02<00:10,  2.01s/it]Loading checkpoint shards:  33%|███▎      | 2/6 [00:03<00:06,  1.70s/it]Loading checkpoint shards:  17%|█▋        | 1/6 [00:02<00:13,  2.62s/it]Loading checkpoint shards:  50%|█████     | 3/6 [00:04<00:05,  1.71s/it]Loading checkpoint shards:  33%|███▎      | 2/6 [00:03<00:07,  1.79s/it]Loading checkpoint shards:  33%|███▎      | 2/6 [00:03<00:06,  1.62s/it]Loading checkpoint shards:  17%|█▋        | 1/6 [00:02<00:12,  2.60s/it]Loading checkpoint shards:  33%|███▎      | 2/6 [00:03<00:07,  1.97s/it]Loading checkpoint shards:  33%|███▎      | 2/6 [00:03<00:07,  1.91s/it]Loading checkpoint shards:  33%|███▎      | 2/6 [00:04<00:08,  2.07s/it]Loading checkpoint shards:  33%|███▎      | 2/6 [00:04<00:08,  2.05s/it]Loading checkpoint shards:  33%|███▎      | 2/6 [00:04<00:08,  2.24s/it]Loading checkpoint shards:  33%|███▎      | 2/6 [00:04<00:08,  2.21s/it]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:06<00:03,  1.98s/it]Loading checkpoint shards:  33%|███▎      | 2/6 [00:04<00:09,  2.44s/it]Loading checkpoint shards:  50%|█████     | 3/6 [00:05<00:06,  2.05s/it]Loading checkpoint shards:  33%|███▎      | 2/6 [00:04<00:09,  2.38s/it]Loading checkpoint shards:  50%|█████     | 3/6 [00:05<00:05,  1.85s/it]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:07<00:04,  2.10s/it]Loading checkpoint shards:  50%|█████     | 3/6 [00:06<00:06,  2.17s/it]Loading checkpoint shards:  50%|█████     | 3/6 [00:06<00:06,  2.21s/it]Loading checkpoint shards:  50%|█████     | 3/6 [00:05<00:05,  1.98s/it]Loading checkpoint shards:  33%|███▎      | 2/6 [00:05<00:11,  2.77s/it]Loading checkpoint shards:  50%|█████     | 3/6 [00:06<00:06,  2.17s/it]Loading checkpoint shards:  50%|█████     | 3/6 [00:06<00:06,  2.28s/it]Loading checkpoint shards:  50%|█████     | 3/6 [00:07<00:07,  2.38s/it]Loading checkpoint shards:  50%|█████     | 3/6 [00:07<00:07,  2.48s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:13<00:00,  2.92s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:13<00:00,  2.29s/it]
+/home/llava/LLaVA/checkpoints/clip-vit-large-patch14-336 is already loaded, `load_model` called again, skipping.
+Loading checkpoint shards: 100%|██████████| 6/6 [00:13<00:00,  2.92s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:13<00:00,  2.23s/it]
+Loading checkpoint shards:  67%|██████▋   | 4/6 [00:08<00:04,  2.38s/it]/home/llava/LLaVA/checkpoints/clip-vit-large-patch14-336 is already loaded, `load_model` called again, skipping.
+Loading checkpoint shards:  50%|█████     | 3/6 [00:08<00:08,  2.73s/it]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:09<00:02,  2.40s/it]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:08<00:04,  2.24s/it]Loading checkpoint shards:  50%|█████     | 3/6 [00:07<00:08,  2.68s/it]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:08<00:04,  2.12s/it]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:09<00:04,  2.44s/it]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:08<00:04,  2.26s/it]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:09<00:04,  2.50s/it]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:10<00:02,  2.55s/it]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:09<00:04,  2.32s/it]Loading checkpoint shards:  50%|█████     | 3/6 [00:09<00:09,  3.19s/it]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:09<00:04,  2.48s/it]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:10<00:05,  2.65s/it]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:10<00:02,  2.19s/it]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:10<00:02,  2.21s/it]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:11<00:02,  2.54s/it]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:10<00:05,  2.71s/it]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:10<00:05,  2.81s/it]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:11<00:02,  2.25s/it]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:11<00:02,  2.53s/it]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:11<00:02,  2.49s/it]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:11<00:02,  2.23s/it]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:11<00:02,  2.33s/it]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:11<00:05,  2.87s/it]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:12<00:02,  2.48s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:14<00:00,  3.11s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:14<00:00,  2.40s/it]
+/home/llava/LLaVA/checkpoints/clip-vit-large-patch14-336 is already loaded, `load_model` called again, skipping.
+Loading checkpoint shards:  83%|████████▎ | 5/6 [00:13<00:02,  2.72s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:15<00:00,  3.29s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:15<00:00,  2.60s/it]
+Loading checkpoint shards:  83%|████████▎ | 5/6 [00:13<00:02,  2.68s/it]/home/llava/LLaVA/checkpoints/clip-vit-large-patch14-336 is already loaded, `load_model` called again, skipping.
+Loading checkpoint shards: 100%|██████████| 6/6 [00:14<00:00,  2.72s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:14<00:00,  2.35s/it]
+/home/llava/LLaVA/checkpoints/clip-vit-large-patch14-336 is already loaded, `load_model` called again, skipping.
+Loading checkpoint shards:  83%|████████▎ | 5/6 [00:13<00:02,  2.65s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:15<00:00,  2.96s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:15<00:00,  2.54s/it]
+/home/llava/LLaVA/checkpoints/clip-vit-large-patch14-336 is already loaded, `load_model` called again, skipping.
+Loading checkpoint shards: 100%|██████████| 6/6 [00:14<00:00,  2.79s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:14<00:00,  2.49s/it]
+Loading checkpoint shards: 100%|██████████| 6/6 [00:14<00:00,  2.65s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:14<00:00,  2.44s/it]
+/home/llava/LLaVA/checkpoints/clip-vit-large-patch14-336 is already loaded, `load_model` called again, skipping.
+/home/llava/LLaVA/checkpoints/clip-vit-large-patch14-336 is already loaded, `load_model` called again, skipping.
+Loading checkpoint shards: 100%|██████████| 6/6 [00:15<00:00,  2.95s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:15<00:00,  2.51s/it]
+Loading checkpoint shards: 100%|██████████| 6/6 [00:15<00:00,  2.94s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:15<00:00,  2.61s/it]
+/usr/local/lib/python3.12/site-packages/accelerate/accelerator.py:446: FutureWarning: Passing the following arguments to `Accelerator` is deprecated and will be removed in version 1.0 of Accelerate: dict_keys(['dispatch_batches', 'split_batches']). Please pass an `accelerate.DataLoaderConfiguration` instead: 
+dataloader_config = DataLoaderConfiguration(dispatch_batches=None, split_batches=False)
+  warnings.warn(
+/home/llava/LLaVA/checkpoints/clip-vit-large-patch14-336 is already loaded, `load_model` called again, skipping.
+/home/llava/LLaVA/checkpoints/clip-vit-large-patch14-336 is already loaded, `load_model` called again, skipping.
+Loading checkpoint shards: 100%|██████████| 6/6 [00:15<00:00,  3.03s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:15<00:00,  2.62s/it]
+/home/llava/LLaVA/checkpoints/clip-vit-large-patch14-336 is already loaded, `load_model` called again, skipping.
+/usr/local/lib/python3.12/site-packages/accelerate/accelerator.py:446: FutureWarning: Passing the following arguments to `Accelerator` is deprecated and will be removed in version 1.0 of Accelerate: dict_keys(['dispatch_batches', 'split_batches']). Please pass an `accelerate.DataLoaderConfiguration` instead: 
+dataloader_config = DataLoaderConfiguration(dispatch_batches=None, split_batches=False)
+  warnings.warn(
+Loading checkpoint shards: 100%|██████████| 6/6 [00:15<00:00,  2.77s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:15<00:00,  2.55s/it]
+/home/llava/LLaVA/checkpoints/clip-vit-large-patch14-336 is already loaded, `load_model` called again, skipping.
+Loading checkpoint shards: 100%|██████████| 6/6 [00:15<00:00,  2.82s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:15<00:00,  2.63s/it]
+/home/llava/LLaVA/checkpoints/clip-vit-large-patch14-336 is already loaded, `load_model` called again, skipping.
+Loading checkpoint shards: 100%|██████████| 6/6 [00:16<00:00,  2.69s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:16<00:00,  2.69s/it]
+Loading checkpoint shards: 100%|██████████| 6/6 [00:15<00:00,  2.66s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:15<00:00,  2.61s/it]
+Loading checkpoint shards: 100%|██████████| 6/6 [00:15<00:00,  2.34s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:15<00:00,  2.59s/it]
+/home/llava/LLaVA/checkpoints/clip-vit-large-patch14-336 is already loaded, `load_model` called again, skipping.
+/home/llava/LLaVA/checkpoints/clip-vit-large-patch14-336 is already loaded, `load_model` called again, skipping.
+/home/llava/LLaVA/checkpoints/clip-vit-large-patch14-336 is already loaded, `load_model` called again, skipping.
+/usr/local/lib/python3.12/site-packages/accelerate/accelerator.py:446: FutureWarning: Passing the following arguments to `Accelerator` is deprecated and will be removed in version 1.0 of Accelerate: dict_keys(['dispatch_batches', 'split_batches']). Please pass an `accelerate.DataLoaderConfiguration` instead: 
+dataloader_config = DataLoaderConfiguration(dispatch_batches=None, split_batches=False)
+  warnings.warn(
+/usr/local/lib/python3.12/site-packages/accelerate/accelerator.py:446: FutureWarning: Passing the following arguments to `Accelerator` is deprecated and will be removed in version 1.0 of Accelerate: dict_keys(['dispatch_batches', 'split_batches']). Please pass an `accelerate.DataLoaderConfiguration` instead: 
+dataloader_config = DataLoaderConfiguration(dispatch_batches=None, split_batches=False)
+  warnings.warn(
+/usr/local/lib/python3.12/site-packages/accelerate/accelerator.py:446: FutureWarning: Passing the following arguments to `Accelerator` is deprecated and will be removed in version 1.0 of Accelerate: dict_keys(['dispatch_batches', 'split_batches']). Please pass an `accelerate.DataLoaderConfiguration` instead: 
+dataloader_config = DataLoaderConfiguration(dispatch_batches=None, split_batches=False)
+  warnings.warn(
+/usr/local/lib/python3.12/site-packages/accelerate/accelerator.py:446: FutureWarning: Passing the following arguments to `Accelerator` is deprecated and will be removed in version 1.0 of Accelerate: dict_keys(['dispatch_batches', 'split_batches']). Please pass an `accelerate.DataLoaderConfiguration` instead: 
+dataloader_config = DataLoaderConfiguration(dispatch_batches=None, split_batches=False)
+  warnings.warn(
+/usr/local/lib/python3.12/site-packages/accelerate/accelerator.py:446: FutureWarning: Passing the following arguments to `Accelerator` is deprecated and will be removed in version 1.0 of Accelerate: dict_keys(['dispatch_batches', 'split_batches']). Please pass an `accelerate.DataLoaderConfiguration` instead: 
+dataloader_config = DataLoaderConfiguration(dispatch_batches=None, split_batches=False)
+  warnings.warn(
+/usr/local/lib/python3.12/site-packages/accelerate/accelerator.py:446: FutureWarning: Passing the following arguments to `Accelerator` is deprecated and will be removed in version 1.0 of Accelerate: dict_keys(['dispatch_batches', 'split_batches']). Please pass an `accelerate.DataLoaderConfiguration` instead: 
+dataloader_config = DataLoaderConfiguration(dispatch_batches=None, split_batches=False)
+  warnings.warn(
+/usr/local/lib/python3.12/site-packages/accelerate/accelerator.py:446: FutureWarning: Passing the following arguments to `Accelerator` is deprecated and will be removed in version 1.0 of Accelerate: dict_keys(['dispatch_batches', 'split_batches']). Please pass an `accelerate.DataLoaderConfiguration` instead: 
+dataloader_config = DataLoaderConfiguration(dispatch_batches=None, split_batches=False)
+  warnings.warn(
+/usr/local/lib/python3.12/site-packages/accelerate/accelerator.py:446: FutureWarning: Passing the following arguments to `Accelerator` is deprecated and will be removed in version 1.0 of Accelerate: dict_keys(['dispatch_batches', 'split_batches']). Please pass an `accelerate.DataLoaderConfiguration` instead: 
+dataloader_config = DataLoaderConfiguration(dispatch_batches=None, split_batches=False)
+  warnings.warn(
+/usr/local/lib/python3.12/site-packages/accelerate/accelerator.py:446: FutureWarning: Passing the following arguments to `Accelerator` is deprecated and will be removed in version 1.0 of Accelerate: dict_keys(['dispatch_batches', 'split_batches']). Please pass an `accelerate.DataLoaderConfiguration` instead: 
+dataloader_config = DataLoaderConfiguration(dispatch_batches=None, split_batches=False)
+  warnings.warn(
+/usr/local/lib/python3.12/site-packages/accelerate/accelerator.py:446: FutureWarning: Passing the following arguments to `Accelerator` is deprecated and will be removed in version 1.0 of Accelerate: dict_keys(['dispatch_batches', 'split_batches']). Please pass an `accelerate.DataLoaderConfiguration` instead: 
+dataloader_config = DataLoaderConfiguration(dispatch_batches=None, split_batches=False)
+  warnings.warn(
+/usr/local/lib/python3.12/site-packages/accelerate/accelerator.py:446: FutureWarning: Passing the following arguments to `Accelerator` is deprecated and will be removed in version 1.0 of Accelerate: dict_keys(['dispatch_batches', 'split_batches']). Please pass an `accelerate.DataLoaderConfiguration` instead: 
+dataloader_config = DataLoaderConfiguration(dispatch_batches=None, split_batches=False)
+  warnings.warn(
+/usr/local/lib/python3.12/site-packages/accelerate/accelerator.py:446: FutureWarning: Passing the following arguments to `Accelerator` is deprecated and will be removed in version 1.0 of Accelerate: dict_keys(['dispatch_batches', 'split_batches']). Please pass an `accelerate.DataLoaderConfiguration` instead: 
+dataloader_config = DataLoaderConfiguration(dispatch_batches=None, split_batches=False)
+  warnings.warn(
+Formatting inputs...Skip in lazy mode
+/usr/local/lib/python3.12/site-packages/accelerate/accelerator.py:446: FutureWarning: Passing the following arguments to `Accelerator` is deprecated and will be removed in version 1.0 of Accelerate: dict_keys(['dispatch_batches', 'split_batches']). Please pass an `accelerate.DataLoaderConfiguration` instead: 
+dataloader_config = DataLoaderConfiguration(dispatch_batches=None, split_batches=False)
+  warnings.warn(
+/usr/local/lib/python3.12/site-packages/accelerate/accelerator.py:446: FutureWarning: Passing the following arguments to `Accelerator` is deprecated and will be removed in version 1.0 of Accelerate: dict_keys(['dispatch_batches', 'split_batches']). Please pass an `accelerate.DataLoaderConfiguration` instead: 
+dataloader_config = DataLoaderConfiguration(dispatch_batches=None, split_batches=False)
+  warnings.warn(
+  0%|          | 0/1091 [00:00<?, ?it/s]/usr/local/lib/python3.12/site-packages/torch/_dynamo/eval_frame.py:745: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. In version 2.5 we will raise an exception if use_reentrant is not passed. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.
+  return fn(*args, **kwargs)
+/usr/local/lib/python3.12/site-packages/torch/utils/checkpoint.py:87: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn(
+/usr/local/lib/python3.12/site-packages/torch/_dynamo/eval_frame.py:745: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. In version 2.5 we will raise an exception if use_reentrant is not passed. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.
+  return fn(*args, **kwargs)
+/usr/local/lib/python3.12/site-packages/torch/utils/checkpoint.py:87: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn(
+/usr/local/lib/python3.12/site-packages/torch/_dynamo/eval_frame.py:745: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. In version 2.5 we will raise an exception if use_reentrant is not passed. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.
+  return fn(*args, **kwargs)
+/usr/local/lib/python3.12/site-packages/torch/utils/checkpoint.py:87: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn(
+/usr/local/lib/python3.12/site-packages/torch/_dynamo/eval_frame.py:745: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. In version 2.5 we will raise an exception if use_reentrant is not passed. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.
+  return fn(*args, **kwargs)
+/usr/local/lib/python3.12/site-packages/torch/utils/checkpoint.py:87: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn(
+/usr/local/lib/python3.12/site-packages/torch/_dynamo/eval_frame.py:745: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. In version 2.5 we will raise an exception if use_reentrant is not passed. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.
+  return fn(*args, **kwargs)
+/usr/local/lib/python3.12/site-packages/torch/utils/checkpoint.py:87: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn(
+/usr/local/lib/python3.12/site-packages/torch/_dynamo/eval_frame.py:745: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. In version 2.5 we will raise an exception if use_reentrant is not passed. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.
+  return fn(*args, **kwargs)
+/usr/local/lib/python3.12/site-packages/torch/utils/checkpoint.py:87: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn(
+/usr/local/lib/python3.12/site-packages/torch/_dynamo/eval_frame.py:745: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. In version 2.5 we will raise an exception if use_reentrant is not passed. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.
+  return fn(*args, **kwargs)
+/usr/local/lib/python3.12/site-packages/torch/utils/checkpoint.py:87: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn(
+/usr/local/lib/python3.12/site-packages/torch/_dynamo/eval_frame.py:745: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. In version 2.5 we will raise an exception if use_reentrant is not passed. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.
+  return fn(*args, **kwargs)
+/usr/local/lib/python3.12/site-packages/torch/utils/checkpoint.py:87: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn(
+/usr/local/lib/python3.12/site-packages/torch/_dynamo/eval_frame.py:745: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. In version 2.5 we will raise an exception if use_reentrant is not passed. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.
+  return fn(*args, **kwargs)
+/usr/local/lib/python3.12/site-packages/torch/utils/checkpoint.py:87: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn(
+/usr/local/lib/python3.12/site-packages/torch/_dynamo/eval_frame.py:745: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. In version 2.5 we will raise an exception if use_reentrant is not passed. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.
+  return fn(*args, **kwargs)
+/usr/local/lib/python3.12/site-packages/torch/utils/checkpoint.py:87: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn(
+/usr/local/lib/python3.12/site-packages/torch/_dynamo/eval_frame.py:745: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. In version 2.5 we will raise an exception if use_reentrant is not passed. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.
+  return fn(*args, **kwargs)
+/usr/local/lib/python3.12/site-packages/torch/utils/checkpoint.py:87: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn(
+/usr/local/lib/python3.12/site-packages/torch/_dynamo/eval_frame.py:745: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. In version 2.5 we will raise an exception if use_reentrant is not passed. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.
+  return fn(*args, **kwargs)
+/usr/local/lib/python3.12/site-packages/torch/utils/checkpoint.py:87: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn(
+/usr/local/lib/python3.12/site-packages/torch/_dynamo/eval_frame.py:745: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. In version 2.5 we will raise an exception if use_reentrant is not passed. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.
+  return fn(*args, **kwargs)
+/usr/local/lib/python3.12/site-packages/torch/utils/checkpoint.py:87: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn(
+/usr/local/lib/python3.12/site-packages/torch/_dynamo/eval_frame.py:745: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. In version 2.5 we will raise an exception if use_reentrant is not passed. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.
+  return fn(*args, **kwargs)
+/usr/local/lib/python3.12/site-packages/torch/utils/checkpoint.py:87: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn(
+/usr/local/lib/python3.12/site-packages/torch/_dynamo/eval_frame.py:745: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. In version 2.5 we will raise an exception if use_reentrant is not passed. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.
+  return fn(*args, **kwargs)
+/usr/local/lib/python3.12/site-packages/torch/utils/checkpoint.py:87: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn(
+/usr/local/lib/python3.12/site-packages/torch/_dynamo/eval_frame.py:745: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. In version 2.5 we will raise an exception if use_reentrant is not passed. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.
+  return fn(*args, **kwargs)
+/usr/local/lib/python3.12/site-packages/torch/utils/checkpoint.py:87: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn(
+  0%|          | 1/1091 [00:24<7:27:59, 24.66s/it]                                                  {'loss': 3.4948, 'learning_rate': 3.0303030303030306e-05, 'epoch': 0.0}
+  0%|          | 1/1091 [00:24<7:27:59, 24.66s/it]  0%|          | 2/1091 [00:38<5:37:12, 18.58s/it]                                                  {'loss': 3.6009, 'learning_rate': 6.060606060606061e-05, 'epoch': 0.0}
+  0%|          | 2/1091 [00:38<5:37:12, 18.58s/it]  0%|          | 3/1091 [00:53<5:00:14, 16.56s/it]                                                  {'loss': 3.2864, 'learning_rate': 9.090909090909092e-05, 'epoch': 0.0}
+  0%|          | 3/1091 [00:53<5:00:14, 16.56s/it]  0%|          | 4/1091 [01:07<4:42:47, 15.61s/it]                                                  {'loss': 2.7255, 'learning_rate': 0.00012121212121212122, 'epoch': 0.0}
+  0%|          | 4/1091 [01:07<4:42:47, 15.61s/it]  0%|          | 5/1091 [01:21<4:33:00, 15.08s/it]                                                  {'loss': 2.586, 'learning_rate': 0.00015151515151515152, 'epoch': 0.0}
+  0%|          | 5/1091 [01:21<4:33:00, 15.08s/it]  1%|          | 6/1091 [01:35<4:26:55, 14.76s/it]                                                  {'loss': 2.4996, 'learning_rate': 0.00018181818181818183, 'epoch': 0.01}
+  1%|          | 6/1091 [01:35<4:26:55, 14.76s/it]  1%|          | 7/1091 [01:49<4:23:02, 14.56s/it]                                                  {'loss': 2.5284, 'learning_rate': 0.00021212121212121213, 'epoch': 0.01}
+  1%|          | 7/1091 [01:49<4:23:02, 14.56s/it]  1%|          | 8/1091 [02:04<4:21:19, 14.48s/it]                                                  {'loss': 2.634, 'learning_rate': 0.00024242424242424245, 'epoch': 0.01}
+  1%|          | 8/1091 [02:04<4:21:19, 14.48s/it]  1%|          | 9/1091 [02:18<4:19:10, 14.37s/it]                                                  {'loss': 2.5222, 'learning_rate': 0.00027272727272727274, 'epoch': 0.01}
+  1%|          | 9/1091 [02:18<4:19:10, 14.37s/it]  1%|          | 10/1091 [02:32<4:18:37, 14.35s/it]                                                   {'loss': 2.4241, 'learning_rate': 0.00030303030303030303, 'epoch': 0.01}
+  1%|          | 10/1091 [02:32<4:18:37, 14.35s/it]  1%|          | 11/1091 [02:47<4:19:59, 14.44s/it]                                                   {'loss': 2.4059, 'learning_rate': 0.0003333333333333333, 'epoch': 0.01}
+  1%|          | 11/1091 [02:47<4:19:59, 14.44s/it]  1%|          | 12/1091 [03:01<4:18:06, 14.35s/it]                                                   {'loss': 2.3882, 'learning_rate': 0.00036363636363636367, 'epoch': 0.01}
+  1%|          | 12/1091 [03:01<4:18:06, 14.35s/it]  1%|          | 13/1091 [03:15<4:16:42, 14.29s/it]                                                   {'loss': 2.2959, 'learning_rate': 0.0003939393939393939, 'epoch': 0.01}
+  1%|          | 13/1091 [03:15<4:16:42, 14.29s/it]  1%|▏         | 14/1091 [03:29<4:15:39, 14.24s/it]                                                   {'loss': 2.4072, 'learning_rate': 0.00042424242424242425, 'epoch': 0.01}
+  1%|▏         | 14/1091 [03:29<4:15:39, 14.24s/it]  1%|▏         | 15/1091 [03:43<4:14:51, 14.21s/it]                                                   {'loss': 2.3182, 'learning_rate': 0.00045454545454545455, 'epoch': 0.01}
+  1%|▏         | 15/1091 [03:43<4:14:51, 14.21s/it]  1%|▏         | 16/1091 [03:57<4:14:15, 14.19s/it]                                                   {'loss': 2.2869, 'learning_rate': 0.0004848484848484849, 'epoch': 0.01}
+  1%|▏         | 16/1091 [03:57<4:14:15, 14.19s/it]  2%|▏         | 17/1091 [04:11<4:13:47, 14.18s/it]                                                   {'loss': 2.3067, 'learning_rate': 0.0005151515151515151, 'epoch': 0.02}
+  2%|▏         | 17/1091 [04:11<4:13:47, 14.18s/it]  2%|▏         | 18/1091 [04:26<4:13:20, 14.17s/it]                                                   {'loss': 2.2581, 'learning_rate': 0.0005454545454545455, 'epoch': 0.02}
+  2%|▏         | 18/1091 [04:26<4:13:20, 14.17s/it]  2%|▏         | 19/1091 [04:40<4:12:58, 14.16s/it]                                                   {'loss': 2.3095, 'learning_rate': 0.0005757575757575758, 'epoch': 0.02}
+  2%|▏         | 19/1091 [04:40<4:12:58, 14.16s/it]  2%|▏         | 20/1091 [04:54<4:12:37, 14.15s/it]                                                   {'loss': 2.3108, 'learning_rate': 0.0006060606060606061, 'epoch': 0.02}
+  2%|▏         | 20/1091 [04:54<4:12:37, 14.15s/it]  2%|▏         | 21/1091 [05:08<4:12:19, 14.15s/it]                                                   {'loss': 2.232, 'learning_rate': 0.0006363636363636364, 'epoch': 0.02}
+  2%|▏         | 21/1091 [05:08<4:12:19, 14.15s/it]  2%|▏         | 22/1091 [05:22<4:12:02, 14.15s/it]                                                   {'loss': 2.1755, 'learning_rate': 0.0006666666666666666, 'epoch': 0.02}
+  2%|▏         | 22/1091 [05:22<4:12:02, 14.15s/it]  2%|▏         | 23/1091 [05:36<4:12:36, 14.19s/it]                                                   {'loss': 2.1801, 'learning_rate': 0.000696969696969697, 'epoch': 0.02}
+  2%|▏         | 23/1091 [05:36<4:12:36, 14.19s/it]  2%|▏         | 24/1091 [05:51<4:12:58, 14.23s/it]                                                   {'loss': 2.2222, 'learning_rate': 0.0007272727272727273, 'epoch': 0.02}
+  2%|▏         | 24/1091 [05:51<4:12:58, 14.23s/it]  2%|▏         | 25/1091 [06:05<4:13:07, 14.25s/it]                                                   {'loss': 2.2197, 'learning_rate': 0.0007575757575757576, 'epoch': 0.02}
+  2%|▏         | 25/1091 [06:05<4:13:07, 14.25s/it]  2%|▏         | 26/1091 [06:19<4:12:21, 14.22s/it]                                                   {'loss': 2.2144, 'learning_rate': 0.0007878787878787878, 'epoch': 0.02}
+  2%|▏         | 26/1091 [06:19<4:12:21, 14.22s/it]  2%|▏         | 27/1091 [06:33<4:11:41, 14.19s/it]                                                   {'loss': 2.257, 'learning_rate': 0.0008181818181818183, 'epoch': 0.02}
+  2%|▏         | 27/1091 [06:33<4:11:41, 14.19s/it]  3%|▎         | 28/1091 [06:48<4:12:01, 14.23s/it]                                                   {'loss': 2.2358, 'learning_rate': 0.0008484848484848485, 'epoch': 0.03}
+  3%|▎         | 28/1091 [06:48<4:12:01, 14.23s/it]  3%|▎         | 29/1091 [07:02<4:12:12, 14.25s/it]                                                   {'loss': 2.1482, 'learning_rate': 0.0008787878787878789, 'epoch': 0.03}
+  3%|▎         | 29/1091 [07:02<4:12:12, 14.25s/it]  3%|▎         | 30/1091 [07:16<4:12:16, 14.27s/it]                                                   {'loss': 2.211, 'learning_rate': 0.0009090909090909091, 'epoch': 0.03}
+  3%|▎         | 30/1091 [07:16<4:12:16, 14.27s/it]  3%|▎         | 31/1091 [07:30<4:11:24, 14.23s/it]                                                   {'loss': 2.1719, 'learning_rate': 0.0009393939393939394, 'epoch': 0.03}
+  3%|▎         | 31/1091 [07:30<4:11:24, 14.23s/it]  3%|▎         | 32/1091 [07:45<4:10:43, 14.21s/it]                                                   {'loss': 2.1743, 'learning_rate': 0.0009696969696969698, 'epoch': 0.03}
+  3%|▎         | 32/1091 [07:45<4:10:43, 14.21s/it]  3%|▎         | 33/1091 [07:59<4:10:10, 14.19s/it]                                                   {'loss': 2.2125, 'learning_rate': 0.001, 'epoch': 0.03}
+  3%|▎         | 33/1091 [07:59<4:10:10, 14.19s/it]  3%|▎         | 34/1091 [08:13<4:09:42, 14.17s/it]                                                   {'loss': 2.1953, 'learning_rate': 0.000999997795713202, 'epoch': 0.03}
+  3%|▎         | 34/1091 [08:13<4:09:42, 14.17s/it]  3%|▎         | 35/1091 [08:27<4:10:05, 14.21s/it]                                                   {'loss': 2.1128, 'learning_rate': 0.0009999911828722436, 'epoch': 0.03}
+  3%|▎         | 35/1091 [08:27<4:10:05, 14.21s/it]  3%|▎         | 36/1091 [08:41<4:09:30, 14.19s/it]                                                   {'loss': 2.1356, 'learning_rate': 0.0009999801615354314, 'epoch': 0.03}
+  3%|▎         | 36/1091 [08:41<4:09:30, 14.19s/it]  3%|▎         | 37/1091 [08:55<4:09:00, 14.18s/it]                                                   {'loss': 2.141, 'learning_rate': 0.0009999647317999417, 'epoch': 0.03}
+  3%|▎         | 37/1091 [08:55<4:09:00, 14.18s/it]  3%|▎         | 38/1091 [09:10<4:09:27, 14.21s/it]                                                   {'loss': 2.1632, 'learning_rate': 0.000999944893801821, 'epoch': 0.03}
+  3%|▎         | 38/1091 [09:10<4:09:27, 14.21s/it]  4%|▎         | 39/1091 [09:24<4:09:40, 14.24s/it]                                                   {'loss': 2.068, 'learning_rate': 0.0009999206477159838, 'epoch': 0.04}
+  4%|▎         | 39/1091 [09:24<4:09:40, 14.24s/it]  4%|▎         | 40/1091 [09:38<4:09:46, 14.26s/it]                                                   {'loss': 2.1237, 'learning_rate': 0.0009998919937562114, 'epoch': 0.04}
+  4%|▎         | 40/1091 [09:38<4:09:46, 14.26s/it]  4%|▍         | 41/1091 [09:53<4:09:46, 14.27s/it]                                                   {'loss': 2.2046, 'learning_rate': 0.0009998589321751502, 'epoch': 0.04}
+  4%|▍         | 41/1091 [09:53<4:09:46, 14.27s/it]  4%|▍         | 42/1091 [10:07<4:08:52, 14.24s/it]                                                   {'loss': 2.1061, 'learning_rate': 0.0009998214632643088, 'epoch': 0.04}
+  4%|▍         | 42/1091 [10:07<4:08:52, 14.24s/it]  4%|▍         | 43/1091 [10:21<4:08:10, 14.21s/it]                                                   {'loss': 2.1603, 'learning_rate': 0.0009997795873540561, 'epoch': 0.04}
+  4%|▍         | 43/1091 [10:21<4:08:10, 14.21s/it]  4%|▍         | 44/1091 [10:35<4:08:24, 14.24s/it]                                                   {'loss': 2.0892, 'learning_rate': 0.0009997333048136182, 'epoch': 0.04}
+  4%|▍         | 44/1091 [10:35<4:08:24, 14.24s/it]  4%|▍         | 45/1091 [10:49<4:07:40, 14.21s/it]                                                   {'loss': 2.0992, 'learning_rate': 0.000999682616051075, 'epoch': 0.04}
+  4%|▍         | 45/1091 [10:49<4:07:40, 14.21s/it]  4%|▍         | 46/1091 [11:04<4:07:58, 14.24s/it]                                                   {'loss': 2.1002, 'learning_rate': 0.000999627521513357, 'epoch': 0.04}
+  4%|▍         | 46/1091 [11:04<4:07:58, 14.24s/it]  4%|▍         | 47/1091 [11:18<4:07:13, 14.21s/it]                                                   {'loss': 2.0557, 'learning_rate': 0.0009995680216862406, 'epoch': 0.04}
+  4%|▍         | 47/1091 [11:18<4:07:13, 14.21s/it]  4%|▍         | 48/1091 [11:32<4:06:40, 14.19s/it]                                                   {'loss': 2.0724, 'learning_rate': 0.0009995041170943447, 'epoch': 0.04}
+  4%|▍         | 48/1091 [11:32<4:06:40, 14.19s/it]  4%|▍         | 49/1091 [11:46<4:06:07, 14.17s/it]                                                   {'loss': 2.1242, 'learning_rate': 0.0009994358083011254, 'epoch': 0.04}
+  4%|▍         | 49/1091 [11:46<4:06:07, 14.17s/it]  5%|▍         | 50/1091 [12:00<4:05:45, 14.16s/it]                                                   {'loss': 2.1383, 'learning_rate': 0.0009993630959088714, 'epoch': 0.05}
+  5%|▍         | 50/1091 [12:00<4:05:45, 14.16s/it]  5%|▍         | 51/1091 [12:14<4:05:25, 14.16s/it]                                                   {'loss': 2.1211, 'learning_rate': 0.0009992859805586986, 'epoch': 0.05}
+  5%|▍         | 51/1091 [12:14<4:05:25, 14.16s/it]  5%|▍         | 52/1091 [12:29<4:05:08, 14.16s/it]                                                   {'loss': 2.0438, 'learning_rate': 0.0009992044629305447, 'epoch': 0.05}
+  5%|▍         | 52/1091 [12:29<4:05:08, 14.16s/it]  5%|▍         | 53/1091 [12:43<4:04:51, 14.15s/it]                                                   {'loss': 2.0775, 'learning_rate': 0.0009991185437431618, 'epoch': 0.05}
+  5%|▍         | 53/1091 [12:43<4:04:51, 14.15s/it]  5%|▍         | 54/1091 [12:57<4:04:32, 14.15s/it]                                                   {'loss': 2.0772, 'learning_rate': 0.0009990282237541128, 'epoch': 0.05}
+  5%|▍         | 54/1091 [12:57<4:04:32, 14.15s/it]  5%|▌         | 55/1091 [13:11<4:04:12, 14.14s/it]                                                   {'loss': 2.1078, 'learning_rate': 0.000998933503759762, 'epoch': 0.05}
+  5%|▌         | 55/1091 [13:11<4:04:12, 14.14s/it]  5%|▌         | 56/1091 [13:25<4:03:58, 14.14s/it]                                                   {'loss': 2.054, 'learning_rate': 0.0009988343845952696, 'epoch': 0.05}
+  5%|▌         | 56/1091 [13:25<4:03:58, 14.14s/it]  5%|▌         | 57/1091 [13:40<4:05:22, 14.24s/it]                                                   {'loss': 2.1604, 'learning_rate': 0.0009987308671345837, 'epoch': 0.05}
+  5%|▌         | 57/1091 [13:40<4:05:22, 14.24s/it]  5%|▌         | 58/1091 [13:54<4:05:29, 14.26s/it]                                                   {'loss': 2.043, 'learning_rate': 0.0009986229522904336, 'epoch': 0.05}
+  5%|▌         | 58/1091 [13:54<4:05:29, 14.26s/it]  5%|▌         | 59/1091 [14:08<4:04:36, 14.22s/it]                                                   {'loss': 2.1202, 'learning_rate': 0.0009985106410143197, 'epoch': 0.05}
+  5%|▌         | 59/1091 [14:08<4:04:36, 14.22s/it]  5%|▌         | 60/1091 [14:22<4:04:45, 14.24s/it]                                                   {'loss': 2.1228, 'learning_rate': 0.0009983939342965071, 'epoch': 0.05}
+  5%|▌         | 60/1091 [14:22<4:04:45, 14.24s/it]  6%|▌         | 61/1091 [14:36<4:04:01, 14.22s/it]                                                   {'loss': 2.0924, 'learning_rate': 0.0009982728331660163, 'epoch': 0.06}
+  6%|▌         | 61/1091 [14:36<4:04:01, 14.22s/it]  6%|▌         | 62/1091 [14:51<4:03:29, 14.20s/it]                                                   {'loss': 2.1422, 'learning_rate': 0.000998147338690614, 'epoch': 0.06}
+  6%|▌         | 62/1091 [14:51<4:03:29, 14.20s/it]  6%|▌         | 63/1091 [15:05<4:02:55, 14.18s/it]                                                   {'loss': 2.059, 'learning_rate': 0.0009980174519768031, 'epoch': 0.06}
+  6%|▌         | 63/1091 [15:05<4:02:55, 14.18s/it]  6%|▌         | 64/1091 [15:19<4:03:17, 14.21s/it]                                                   {'loss': 2.0941, 'learning_rate': 0.000997883174169814, 'epoch': 0.06}
+  6%|▌         | 64/1091 [15:19<4:03:17, 14.21s/it]  6%|▌         | 65/1091 [15:33<4:02:39, 14.19s/it]                                                   {'loss': 2.0835, 'learning_rate': 0.0009977445064535938, 'epoch': 0.06}
+  6%|▌         | 65/1091 [15:33<4:02:39, 14.19s/it]  6%|▌         | 66/1091 [15:47<4:02:07, 14.17s/it]                                                   {'loss': 2.0787, 'learning_rate': 0.0009976014500507962, 'epoch': 0.06}
+  6%|▌         | 66/1091 [15:47<4:02:07, 14.17s/it]  6%|▌         | 67/1091 [16:02<4:02:30, 14.21s/it]                                                   {'loss': 2.1022, 'learning_rate': 0.0009974540062227708, 'epoch': 0.06}
+  6%|▌         | 67/1091 [16:02<4:02:30, 14.21s/it]  6%|▌         | 68/1091 [16:16<4:01:55, 14.19s/it]                                                   {'loss': 2.1068, 'learning_rate': 0.0009973021762695513, 'epoch': 0.06}
+  6%|▌         | 68/1091 [16:16<4:01:55, 14.19s/it]  6%|▋         | 69/1091 [16:30<4:01:28, 14.18s/it]                                                   {'loss': 2.1162, 'learning_rate': 0.0009971459615298447, 'epoch': 0.06}
+  6%|▋         | 69/1091 [16:30<4:01:28, 14.18s/it]  6%|▋         | 70/1091 [16:44<4:01:49, 14.21s/it]                                                   {'loss': 2.0564, 'learning_rate': 0.0009969853633810196, 'epoch': 0.06}
+  6%|▋         | 70/1091 [16:44<4:01:49, 14.21s/it]  7%|▋         | 71/1091 [16:58<4:01:15, 14.19s/it]                                                   {'loss': 2.1076, 'learning_rate': 0.0009968203832390935, 'epoch': 0.07}
+  7%|▋         | 71/1091 [16:58<4:01:15, 14.19s/it]  7%|▋         | 72/1091 [17:12<4:00:46, 14.18s/it]                                                   {'loss': 2.1585, 'learning_rate': 0.0009966510225587202, 'epoch': 0.07}
+  7%|▋         | 72/1091 [17:12<4:00:46, 14.18s/it]  7%|▋         | 73/1091 [17:27<4:00:21, 14.17s/it]                                                   {'loss': 2.0822, 'learning_rate': 0.000996477282833178, 'epoch': 0.07}
+  7%|▋         | 73/1091 [17:27<4:00:21, 14.17s/it]  7%|▋         | 74/1091 [17:41<4:01:40, 14.26s/it]                                                   {'loss': 2.1197, 'learning_rate': 0.000996299165594356, 'epoch': 0.07}
+  7%|▋         | 74/1091 [17:41<4:01:40, 14.26s/it]  7%|▋         | 75/1091 [17:55<4:00:50, 14.22s/it]                                                   {'loss': 2.0999, 'learning_rate': 0.0009961166724127392, 'epoch': 0.07}
+  7%|▋         | 75/1091 [17:55<4:00:50, 14.22s/it]  7%|▋         | 76/1091 [18:10<4:03:47, 14.41s/it]                                                   {'loss': 2.0823, 'learning_rate': 0.0009959298048973979, 'epoch': 0.07}
+  7%|▋         | 76/1091 [18:10<4:03:47, 14.41s/it]  7%|▋         | 77/1091 [18:24<4:02:13, 14.33s/it]                                                   {'loss': 2.0983, 'learning_rate': 0.0009957385646959696, 'epoch': 0.07}
+  7%|▋         | 77/1091 [18:24<4:02:13, 14.33s/it]  7%|▋         | 78/1091 [18:39<4:01:48, 14.32s/it]                                                   {'loss': 2.1164, 'learning_rate': 0.000995542953494648, 'epoch': 0.07}
+  7%|▋         | 78/1091 [18:39<4:01:48, 14.32s/it]  7%|▋         | 79/1091 [18:53<4:01:26, 14.31s/it]                                                   {'loss': 2.0807, 'learning_rate': 0.0009953429730181654, 'epoch': 0.07}
+  7%|▋         | 79/1091 [18:53<4:01:26, 14.31s/it]  7%|▋         | 80/1091 [19:07<4:01:59, 14.36s/it]                                                   {'loss': 2.0551, 'learning_rate': 0.0009951386250297792, 'epoch': 0.07}
+  7%|▋         | 80/1091 [19:07<4:01:59, 14.36s/it]  7%|▋         | 81/1091 [19:22<4:01:28, 14.34s/it]                                                   {'loss': 2.0205, 'learning_rate': 0.000994929911331256, 'epoch': 0.07}
+  7%|▋         | 81/1091 [19:22<4:01:28, 14.34s/it]  8%|▊         | 82/1091 [19:36<4:01:02, 14.33s/it]                                                   {'loss': 2.009, 'learning_rate': 0.0009947168337628546, 'epoch': 0.08}
+  8%|▊         | 82/1091 [19:36<4:01:02, 14.33s/it]  8%|▊         | 83/1091 [19:50<3:59:50, 14.28s/it]                                                   {'loss': 2.0885, 'learning_rate': 0.0009944993942033117, 'epoch': 0.08}
+  8%|▊         | 83/1091 [19:50<3:59:50, 14.28s/it]  8%|▊         | 84/1091 [20:04<3:58:55, 14.24s/it]                                                   {'loss': 2.0869, 'learning_rate': 0.000994277594569824, 'epoch': 0.08}
+  8%|▊         | 84/1091 [20:04<3:58:55, 14.24s/it]  8%|▊         | 85/1091 [20:18<3:58:10, 14.20s/it]                                                   {'loss': 2.096, 'learning_rate': 0.000994051436818031, 'epoch': 0.08}
+  8%|▊         | 85/1091 [20:18<3:58:10, 14.20s/it]  8%|▊         | 86/1091 [20:32<3:57:36, 14.19s/it]                                                   {'loss': 2.0494, 'learning_rate': 0.0009938209229419996, 'epoch': 0.08}
+  8%|▊         | 86/1091 [20:32<3:57:36, 14.19s/it]  8%|▊         | 87/1091 [20:47<3:57:08, 14.17s/it]                                                   {'loss': 2.0276, 'learning_rate': 0.0009935860549742039, 'epoch': 0.08}
+  8%|▊         | 87/1091 [20:47<3:57:08, 14.17s/it]  8%|▊         | 88/1091 [21:01<3:56:44, 14.16s/it]                                                   {'loss': 2.1301, 'learning_rate': 0.00099334683498551, 'epoch': 0.08}
+  8%|▊         | 88/1091 [21:01<3:56:44, 14.16s/it]  8%|▊         | 89/1091 [21:15<3:56:25, 14.16s/it]                                                   {'loss': 2.0774, 'learning_rate': 0.000993103265085155, 'epoch': 0.08}
+  8%|▊         | 89/1091 [21:15<3:56:25, 14.16s/it]  8%|▊         | 90/1091 [21:29<3:56:07, 14.15s/it]                                                   {'loss': 2.0718, 'learning_rate': 0.0009928553474207312, 'epoch': 0.08}
+  8%|▊         | 90/1091 [21:29<3:56:07, 14.15s/it]  8%|▊         | 91/1091 [21:43<3:56:37, 14.20s/it]                                                   {'loss': 2.0813, 'learning_rate': 0.0009926030841781648, 'epoch': 0.08}
+  8%|▊         | 91/1091 [21:43<3:56:37, 14.20s/it]
