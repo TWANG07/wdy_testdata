@@ -1,0 +1,284 @@
+diff -r '--exclude=*.pyc' torch260_cu126_py312_image/_C/__init__.pyi torch260_cu126_py312_official/_C/__init__.pyi
+10666d10665
+< def _cuda_cudaCachingAllocator_get_allocator_expandable_segments() -> _bool: ...
+Binary files torch260_cu126_py312_image/_C.cpython-312-x86_64-linux-gnu.so and torch260_cu126_py312_official/_C.cpython-312-x86_64-linux-gnu.so differ
+diff -r '--exclude=*.pyc' torch260_cu126_py312_image/_meta_registrations.py torch260_cu126_py312_official/_meta_registrations.py
+5123,5130d5122
+<     USE_PPU = torch.cuda.get_device_name().lower().find("ppu") != -1
+<     if not USE_PPU:
+<         philox_seed = torch.empty((), dtype=torch.long, device="meta")
+<         philox_offset = torch.empty((), dtype=torch.long, device="meta")
+<     else:
+<         philox_seed = torch.empty((2), dtype=torch.long, device="meta")
+<         philox_offset = torch.empty((2), dtype=torch.long, device="meta")
+< 
+5158,5159c5150,5151
+<         philox_seed,
+<         philox_offset,
+---
+>         torch.empty((), dtype=torch.long, device="meta"),
+>         torch.empty((), dtype=torch.long, device="meta"),
+5486,5493d5477
+<     USE_PPU = torch.cuda.get_device_name().lower().find("ppu") != -1
+<     if not USE_PPU:
+<         philox_seed = torch.empty((), dtype=torch.long, device="meta")
+<         philox_offset = torch.empty((), dtype=torch.long, device="meta")
+<     else:
+<         philox_seed = torch.empty((2), dtype=torch.long, device="meta")
+<         philox_offset = torch.empty((2), dtype=torch.long, device="meta")
+< 
+5513,5514c5497,5498
+<         philox_seed,
+<         philox_offset,
+---
+>         torch.empty((), dtype=torch.long, device="meta"),
+>         torch.empty((), dtype=torch.long, device="meta"),
+Only in torch260_cu126_py312_image/bin: FileStoreTest
+Only in torch260_cu126_py312_image/bin: HashStoreTest
+Only in torch260_cu126_py312_image/bin: ProcessGroupGlooAsyncTest
+Only in torch260_cu126_py312_image/bin: ProcessGroupGlooTest
+Only in torch260_cu126_py312_image/bin: ProcessGroupMPITest
+Only in torch260_cu126_py312_image/bin: ProcessGroupNCCLErrorsTest
+Only in torch260_cu126_py312_image/bin: ProcessGroupNCCLTest
+Only in torch260_cu126_py312_image/bin: TCPStoreTest
+Binary files torch260_cu126_py312_image/bin/protoc and torch260_cu126_py312_official/bin/protoc differ
+Binary files torch260_cu126_py312_image/bin/protoc-3.13.0.0 and torch260_cu126_py312_official/bin/protoc-3.13.0.0 differ
+Only in torch260_cu126_py312_image/bin: test_api
+Only in torch260_cu126_py312_image/bin: test_cpp_rpc
+Only in torch260_cu126_py312_image/bin: test_dist_autograd
+Only in torch260_cu126_py312_image/bin: test_edge_op_registration
+Only in torch260_cu126_py312_image/bin: test_jit
+Only in torch260_cu126_py312_image/bin: test_lazy
+Only in torch260_cu126_py312_image/bin: test_tensorexpr
+Binary files torch260_cu126_py312_image/bin/torch_shm_manager and torch260_cu126_py312_official/bin/torch_shm_manager differ
+Only in torch260_cu126_py312_image/bin: tutorial_tensorexpr
+diff -r '--exclude=*.pyc' torch260_cu126_py312_image/cuda/memory.py torch260_cu126_py312_official/cuda/memory.py
+925,928d924
+< def _get_allocator_expandable_segments() -> bool:
+<     return torch._C._cuda_cudaCachingAllocator_get_allocator_expandable_segments()
+< 
+< 
+diff -r '--exclude=*.pyc' torch260_cu126_py312_image/include/ATen/cuda/CUDAConfig.h torch260_cu126_py312_official/include/ATen/cuda/CUDAConfig.h
+10c10
+< #define AT_CUSPARSELT_ENABLED() 0
+---
+> #define AT_CUSPARSELT_ENABLED() 1
+12c12
+< #define AT_MAGMA_ENABLED() 0
+---
+> #define AT_MAGMA_ENABLED() 1
+19c19
+< #define NVCC_FLAGS_EXTRA "-gencode;arch=compute_80,code=sm_80"
+---
+> #define NVCC_FLAGS_EXTRA "-gencode;arch=compute_50,code=sm_50;-gencode;arch=compute_60,code=sm_60;-gencode;arch=compute_70,code=sm_70;-gencode;arch=compute_75,code=sm_75;-gencode;arch=compute_80,code=sm_80;-gencode;arch=compute_86,code=sm_86;-gencode;arch=compute_90,code=sm_90"
+diff -r '--exclude=*.pyc' torch260_cu126_py312_image/include/ATen/native/cuda/DistributionTemplates.h torch260_cu126_py312_official/include/ATen/native/cuda/DistributionTemplates.h
+39,53d38
+< size_t get_env_sm_count(const char* var_name, size_t def_value = 0) {
+<   try {
+<     if (auto* value = std::getenv(var_name)) {
+<       int sm_count = std::stoi(value);
+<       TORCH_CHECK(sm_count > 0);
+<       return sm_count;
+<     }
+<   } catch (const std::exception& e) {
+<     std::ostringstream oss;
+<     oss << "Invalid " << var_name << " variable value, " << e.what();
+<     TORCH_WARN(oss.str());
+<   }
+<   return def_value;
+< }
+< 
+71,73c56
+<       static_cast<uint32_t>(
+<           get_env_sm_count("SAIL_RAND_SM_COUNT", 108 /*A100*/)) *
+<           blocks_per_sm,
+---
+>       static_cast<uint32_t>(at::cuda::getCurrentDeviceProperties()->multiProcessorCount) * blocks_per_sm,
+diff -r '--exclude=*.pyc' torch260_cu126_py312_image/include/c10/cuda/CUDAAllocatorConfig.h torch260_cu126_py312_official/include/c10/cuda/CUDAAllocatorConfig.h
+139d138
+< C10_CUDA_API bool getAllocatorExpandableSegments();
+diff -r '--exclude=*.pyc' torch260_cu126_py312_image/include/c10/cuda/CUDACachingAllocator.h torch260_cu126_py312_official/include/c10/cuda/CUDACachingAllocator.h
+54,57d53
+< #ifdef USE_PPU
+< extern size_t kSmallBuffer;
+< extern size_t kLargeBuffer;
+< #else
+59d54
+< #endif
+diff -r '--exclude=*.pyc' torch260_cu126_py312_image/include/c10/macros/cmake_macros.h torch260_cu126_py312_official/include/c10/macros/cmake_macros.h
+10c10
+< #define C10_USE_NUMA
+---
+> /* #undef C10_USE_NUMA */
+Only in torch260_cu126_py312_image/lib: libaoti_custom_ops.so
+Only in torch260_cu126_py312_image/lib: libbackend_with_compiler.so
+Binary files torch260_cu126_py312_image/lib/libc10.so and torch260_cu126_py312_official/lib/libc10.so differ
+Binary files torch260_cu126_py312_image/lib/libc10_cuda.so and torch260_cu126_py312_official/lib/libc10_cuda.so differ
+Only in torch260_cu126_py312_image/lib: libc10d_cuda_test.so
+Binary files torch260_cu126_py312_image/lib/libcaffe2_nvrtc.so and torch260_cu126_py312_official/lib/libcaffe2_nvrtc.so differ
+Only in torch260_cu126_py312_official/lib: libgomp-24e2ab19.so.1
+Only in torch260_cu126_py312_image/lib: libjitbackend_test.so
+Binary files torch260_cu126_py312_image/lib/libshm.so and torch260_cu126_py312_official/lib/libshm.so differ
+Binary files torch260_cu126_py312_image/lib/libtorch.so and torch260_cu126_py312_official/lib/libtorch.so differ
+Binary files torch260_cu126_py312_image/lib/libtorch_cpu.so and torch260_cu126_py312_official/lib/libtorch_cpu.so differ
+Binary files torch260_cu126_py312_image/lib/libtorch_cuda.so and torch260_cu126_py312_official/lib/libtorch_cuda.so differ
+Binary files torch260_cu126_py312_image/lib/libtorch_cuda_linalg.so and torch260_cu126_py312_official/lib/libtorch_cuda_linalg.so differ
+Binary files torch260_cu126_py312_image/lib/libtorch_global_deps.so and torch260_cu126_py312_official/lib/libtorch_global_deps.so differ
+Binary files torch260_cu126_py312_image/lib/libtorch_python.so and torch260_cu126_py312_official/lib/libtorch_python.so differ
+Only in torch260_cu126_py312_image/lib: libtorchbind_test.so
+diff -r '--exclude=*.pyc' torch260_cu126_py312_image/nested/_internal/sdpa.py torch260_cu126_py312_official/nested/_internal/sdpa.py
+3d2
+< import os
+738,739d736
+<         if "PPU_SDPA_PRINT_PARAMS" in os.environ:
+<             print("[NestedTensor] SDPA backend: flash_attention")
+784,785d780
+<         if "PPU_SDPA_PRINT_PARAMS" in os.environ:
+<             print("[NestedTensor] SDPA backend: efficient_attention")
+824,825d818
+<         if "PPU_SDPA_PRINT_PARAMS" in os.environ:
+<             print("[NestedTensor] SDPA backend: math_attention")
+diff -r '--exclude=*.pyc' torch260_cu126_py312_image/share/cmake/ATen/ATenConfig.cmake torch260_cu126_py312_official/share/cmake/ATen/ATenConfig.cmake
+8c8
+< set(ATEN_INCLUDE_DIR "/job_2598027/source/pytorch/torch/include")
+---
+> set(ATEN_INCLUDE_DIR "/pytorch/torch/include")
+diff -r '--exclude=*.pyc' torch260_cu126_py312_image/share/cmake/Caffe2/Caffe2Targets.cmake torch260_cu126_py312_official/share/cmake/Caffe2/Caffe2Targets.cmake
+4c4
+<    message(FATAL_ERROR "CMake >= 2.8.0 required")
+---
+>    message(FATAL_ERROR "CMake >= 3.0.0 required")
+6,7c6,7
+< if(CMAKE_VERSION VERSION_LESS "2.8.3")
+<    message(FATAL_ERROR "CMake >= 2.8.3 required")
+---
+> if(CMAKE_VERSION VERSION_LESS "3.0.0")
+>    message(FATAL_ERROR "CMake >= 3.0.0 required")
+10c10
+< cmake_policy(VERSION 2.8.3...3.26)
+---
+> cmake_policy(VERSION 3.0.0...3.29)
+77c77
+<   INTERFACE_COMPILE_DEFINITIONS "USE_DISTRIBUTED;USE_C10D_GLOO;USE_C10D_MPI;USE_RPC;USE_TENSORPIPE"
+---
+>   INTERFACE_COMPILE_DEFINITIONS "USE_DISTRIBUTED;USE_C10D_GLOO;USE_RPC;USE_TENSORPIPE"
+131,134d130
+< if(CMAKE_VERSION VERSION_LESS 3.0.0)
+<   message(FATAL_ERROR "This file relies on consumers using CMake 3.0.0 or greater.")
+< endif()
+< 
+148,150c144,149
+<   foreach(_cmake_file IN LISTS "_cmake_import_check_files_for_${_cmake_target}")
+<     if(NOT EXISTS "${_cmake_file}")
+<       message(FATAL_ERROR "The imported target \"${_cmake_target}\" references the file
+---
+>   if(CMAKE_VERSION VERSION_LESS "3.28"
+>       OR NOT DEFINED _cmake_import_check_xcframework_for_${_cmake_target}
+>       OR NOT IS_DIRECTORY "${_cmake_import_check_xcframework_for_${_cmake_target}}")
+>     foreach(_cmake_file IN LISTS "_cmake_import_check_files_for_${_cmake_target}")
+>       if(NOT EXISTS "${_cmake_file}")
+>         message(FATAL_ERROR "The imported target \"${_cmake_target}\" references the file
+159,160c158,160
+<     endif()
+<   endforeach()
+---
+>       endif()
+>     endforeach()
+>   endif()
+diff -r '--exclude=*.pyc' torch260_cu126_py312_image/share/cmake/Caffe2/public/cuda.cmake torch260_cu126_py312_official/share/cmake/Caffe2/public/cuda.cmake
+63,67c63,67
+< # if(NOT CMAKE_CUDA_COMPILER_VERSION VERSION_EQUAL CUDAToolkit_VERSION)
+< #   message(FATAL_ERROR "Found two conflicting CUDA versions:\n"
+< #                       "V${CMAKE_CUDA_COMPILER_VERSION} in '${CUDA_INCLUDE_DIRS}' and\n"
+< #                       "V${CUDAToolkit_VERSION} in '${CUDAToolkit_INCLUDE_DIRS}'")
+< # endif()
+---
+> if(NOT CMAKE_CUDA_COMPILER_VERSION VERSION_EQUAL CUDAToolkit_VERSION)
+>   message(FATAL_ERROR "Found two conflicting CUDA versions:\n"
+>                       "V${CMAKE_CUDA_COMPILER_VERSION} in '${CUDA_INCLUDE_DIRS}' and\n"
+>                       "V${CUDAToolkit_VERSION} in '${CUDAToolkit_INCLUDE_DIRS}'")
+> endif()
+diff -r '--exclude=*.pyc' torch260_cu126_py312_image/share/cmake/Tensorpipe/TensorpipeTargets-release.cmake torch260_cu126_py312_official/share/cmake/Tensorpipe/TensorpipeTargets-release.cmake
+12c12
+<   IMPORTED_LOCATION_RELEASE "${_IMPORT_PREFIX}/lib/libtensorpipe_uv.a"
+---
+>   IMPORTED_LOCATION_RELEASE "${_IMPORT_PREFIX}/lib64/libtensorpipe_uv.a"
+16c16
+< list(APPEND _cmake_import_check_files_for_tensorpipe_uv "${_IMPORT_PREFIX}/lib/libtensorpipe_uv.a" )
+---
+> list(APPEND _cmake_import_check_files_for_tensorpipe_uv "${_IMPORT_PREFIX}/lib64/libtensorpipe_uv.a" )
+22c22
+<   IMPORTED_LOCATION_RELEASE "${_IMPORT_PREFIX}/lib/libtensorpipe.a"
+---
+>   IMPORTED_LOCATION_RELEASE "${_IMPORT_PREFIX}/lib64/libtensorpipe.a"
+26c26
+< list(APPEND _cmake_import_check_files_for_tensorpipe "${_IMPORT_PREFIX}/lib/libtensorpipe.a" )
+---
+> list(APPEND _cmake_import_check_files_for_tensorpipe "${_IMPORT_PREFIX}/lib64/libtensorpipe.a" )
+32c32
+<   IMPORTED_LOCATION_RELEASE "${_IMPORT_PREFIX}/lib/libtensorpipe_cuda.a"
+---
+>   IMPORTED_LOCATION_RELEASE "${_IMPORT_PREFIX}/lib64/libtensorpipe_cuda.a"
+36c36
+< list(APPEND _cmake_import_check_files_for_tensorpipe_cuda "${_IMPORT_PREFIX}/lib/libtensorpipe_cuda.a" )
+---
+> list(APPEND _cmake_import_check_files_for_tensorpipe_cuda "${_IMPORT_PREFIX}/lib64/libtensorpipe_cuda.a" )
+diff -r '--exclude=*.pyc' torch260_cu126_py312_image/share/cmake/Tensorpipe/TensorpipeTargets.cmake torch260_cu126_py312_official/share/cmake/Tensorpipe/TensorpipeTargets.cmake
+4c4
+<    message(FATAL_ERROR "CMake >= 2.8.0 required")
+---
+>    message(FATAL_ERROR "CMake >= 2.8.12 required")
+6,7c6,7
+< if(CMAKE_VERSION VERSION_LESS "2.8.3")
+<    message(FATAL_ERROR "CMake >= 2.8.3 required")
+---
+> if(CMAKE_VERSION VERSION_LESS "2.8.12")
+>    message(FATAL_ERROR "CMake >= 2.8.12 required")
+10c10
+< cmake_policy(VERSION 2.8.3...3.26)
+---
+> cmake_policy(VERSION 2.8.12...3.29)
+77,78c77,78
+<   INTERFACE_INCLUDE_DIRECTORIES "/usr/local/PPU_SDK/CUDA_SDK/include"
+<   INTERFACE_LINK_LIBRARIES "tensorpipe;/usr/local/PPU_SDK/CUDA_SDK/lib64/libcudart.so"
+---
+>   INTERFACE_INCLUDE_DIRECTORIES "/usr/local/cuda/include"
+>   INTERFACE_LINK_LIBRARIES "tensorpipe;/usr/local/cuda/lib64/libcudart.so"
+81,84d80
+< if(CMAKE_VERSION VERSION_LESS 2.8.12)
+<   message(FATAL_ERROR "This file relies on consumers using CMake 2.8.12 or greater.")
+< endif()
+< 
+98,100c94,99
+<   foreach(_cmake_file IN LISTS "_cmake_import_check_files_for_${_cmake_target}")
+<     if(NOT EXISTS "${_cmake_file}")
+<       message(FATAL_ERROR "The imported target \"${_cmake_target}\" references the file
+---
+>   if(CMAKE_VERSION VERSION_LESS "3.28"
+>       OR NOT DEFINED _cmake_import_check_xcframework_for_${_cmake_target}
+>       OR NOT IS_DIRECTORY "${_cmake_import_check_xcframework_for_${_cmake_target}}")
+>     foreach(_cmake_file IN LISTS "_cmake_import_check_files_for_${_cmake_target}")
+>       if(NOT EXISTS "${_cmake_file}")
+>         message(FATAL_ERROR "The imported target \"${_cmake_target}\" references the file
+109,110c108,110
+<     endif()
+<   endforeach()
+---
+>       endif()
+>     endforeach()
+>   endif()
+diff -r '--exclude=*.pyc' torch260_cu126_py312_image/share/cmake/Torch/TorchConfig.cmake torch260_cu126_py312_official/share/cmake/Torch/TorchConfig.cmake
+120c120
+< if(ON)
+---
+> if(1)
+Only in torch260_cu126_py312_image/: test
+diff -r '--exclude=*.pyc' torch260_cu126_py312_image/version.py torch260_cu126_py312_official/version.py
+4c4
+< __version__ = '2.6.0'
+---
+> __version__ = '2.6.0+cu126'
+7c7
+< git_version = '9975dc07d82845747c0542343b0670bc3b44ca57'
+---
+> git_version = '2236df1770800ffea5697b11b0bb0d910b2e59e1'
